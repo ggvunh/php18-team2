@@ -1,5 +1,8 @@
 <?php
-
+use App\Product;
+use App\Category;
+use App\Brand;
+use Illuminate\Support\Facades\Input;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,9 +15,15 @@
 */
 
 Route::get('/', function () {
-    return view('layouts.index');
+	$products = Product::all();
+	// dd($products);
+    return view('layouts.index')->with('products',$products);
 });
 
 	/*Route::get('/', function(){
 		return 'abc';
 	});*/
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
