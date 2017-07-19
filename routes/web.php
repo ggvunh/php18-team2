@@ -23,3 +23,6 @@ Route::get('/', function () {
 	/*Route::get('/', function(){
 		return 'abc';
 	});*/
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
