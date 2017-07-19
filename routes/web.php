@@ -1,4 +1,7 @@
 <?php
+use App\Product;
+use App\Category;
+use App\Brand;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,7 +15,9 @@
 */
 
 Route::get('/', function () {
-    return view('layouts.index');
+	$products = Product::all();
+	// dd($products);
+    return view('layouts.index')->with('products',$products);
 });
 
 	/*Route::get('/', function(){
