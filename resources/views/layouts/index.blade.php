@@ -1,4 +1,6 @@
 @extends('layouts.master')
+@section('header')
+@stop
 @section('content')
 	<div class="features_items">
 		<h2 class="title text-center">SẢN PHẨM NỔI BẬT</h2>

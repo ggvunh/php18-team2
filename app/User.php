@@ -14,8 +14,12 @@ class User extends Authenticatable
      *
      * @var array
      */
+    public $timestamps = false;
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','is_admin','phone', 'address'
+    ];
+    protected $casts = [
+      'is_admin' => 'boolean',
     ];
 
     /**
@@ -26,4 +30,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function owns(Product $product)
+    {
+      return $this->id == $cat->user_id;
+    }
 }

@@ -67,7 +67,7 @@
 							<ul class="nav navbar-nav">
 								<!-- <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li> -->
 								<li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Giỏ Hàng</a></li>
-								<li><a href="login.html"><i class="fa fa-lock"></i> Đăng Nhập</a></li>
+								<li><a href="login"><i class="fa fa-lock"></i> Đăng Nhập</a></li>
 							</ul>
 						</div>
 					</div>
