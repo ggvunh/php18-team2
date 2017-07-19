@@ -1,6 +1,4 @@
 @extends('layouts.master')
-@section('header')
-@stop
 @section('content')
 	<div class="features_items">
 		<h2 class="title text-center">SẢN PHẨM NỔI BẬT</h2>
@@ -10,13 +8,14 @@
 				<div class="single-products">
 						<div class="productinfo text-center">
 							<img src="{{ $product->images }}" alt="" />
-							<h2>{{ $product->price }}</h2>
+							<h2><?php echo number_format($product->price, 0, ',', ',').'đ' ?></h2>
 							<p>{{ $product->name }}</p>
 							<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
 						</div>
 						<div class="product-overlay">
 							<div class="overlay-content">
-								<h2>{{ $product->price }}</h2>
+
+								<h2><?php echo number_format($product->price, 0, ',', ',').'đ' ?></h2>
 								<p>{{ $product->name }}</p>
 								<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm Vào Giỏ Hàng</a>
 							</div>
