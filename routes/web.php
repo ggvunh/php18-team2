@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Input;
 */
 
 Route::get('/', function () {
-	$products = Product::all();
+	$products = Product::paginate(6);
 	// dd($products);
     return view('layouts.index')->with('products',$products);
 });
