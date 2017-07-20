@@ -997,8 +997,8 @@ h2.title {
 }
 
 .category-tab ul {
-  background: #40403E;
-  border-bottom: 1px solid #FE980F;
+  /*background: #40403E;*/
+  /*border-bottom: 1px solid #FE980F;*/
   list-style: none outside none;
   margin: 0 0 30px;
   padding: 0;
@@ -2520,4 +2520,41 @@ h2.title {
   color: #FE980F;
 }
 
+.tableparameter{
+    display: block;
+    overflow: visible;
+}
+.parameter{
+    display: block;
+    position: relative;
+    overflow: hidden;
+    background: #fff;
+    padding-top: 10px;
+}
 
+.parameter li {
+    display: table;
+    background: #fff;
+    width: 100%;
+    border-top: 1px solid #eee;
+    padding: 5px 0;
+}
+
+.parameter li div {
+    display: table-cell;
+    width: auto;
+    vertical-align: top;
+    padding: 6px 5px;
+    font-size: 14px;
+    color: #333;
+}
+
+.parameter span {
+   display: table-cell;
+    width: 40%;
+    vertical-align: top;
+    padding: 5px 0;
+    font-size: 14px;
+    color: #666;
+    padding-left: 20px;
+}
