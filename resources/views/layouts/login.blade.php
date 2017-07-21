@@ -14,9 +14,7 @@
 							<input type="checkbox" class="checkbox"> 
 							Keep me signed in
 						</span>
-						<button type="submit" class="btn btn-default" style="clear: both; float: left; margin-right: 5px">Login</button>
-						<button type="button"  class="btn btn-default" style="float: left;">Rigister</button>
-						<a href="#" id="register" style="display: none;"></a>
+						<button type="submit" class="btn btn-default">Login</button>
 					</form>
 				</div><!--/login form-->
 			</div>

@@ -2,6 +2,7 @@
 use App\Product;
 use App\Category;
 use App\Brand;
+use Illuminate\Support\Facades\Input;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,16 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//login
 Route::get('/login', function(){
 	return view('layouts.login');
+});
+//end login
+
+//product-detail
+Route::get('/product-detail/{product}', function(Product $product){
+	// $product = Product::all()->find($product);
+	// dd($product);
+	return view('layouts.product-detail')->with('product', $product);
 });
