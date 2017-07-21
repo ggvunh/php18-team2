@@ -34,7 +34,9 @@ Route::get('/login', function(){
 	return view('layouts.login');
 });
 //end login
-
+Route::get('/register', function(){
+	return view('layouts.register');
+});
 //product-detail
 Route::get('/product-detail/{product}', function(Product $product){
 	// $product = Product::all()->find($product);
