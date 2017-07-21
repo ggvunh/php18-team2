@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Product;
+use App\Category;
+use App\Brand;
+use Illuminate\Support\Facades\Input;
 
 class ProductController extends Controller
 {
@@ -13,8 +17,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $products = Product::paginate(6);
+        return view('layouts.index')->with('products',$products);    }
 
     /**
      * Show the form for creating a new resource.
@@ -80,5 +84,10 @@ class ProductController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function product_detail(Product $product)
+    {
+        return view('layouts.product-detail')->with('product', $product);
     }
 }
