@@ -41,3 +41,16 @@ Route::get('/product-detail/{product}', function(Product $product){
 	// dd($product);
 	return view('layouts.product-detail')->with('product', $product);
 });
+
+Route::get('/admin', function(){
+	$products = Product::all();
+	return view('auth.index')->with('products', $products);
+});
+
+//Route::get('/test', function(){
+	//return view('auth.partials.forms.product');
+//});
+
+Route::get('/product', function(){
+	return view('auth.product.create');
+});
