@@ -14,43 +14,11 @@ use Illuminate\Support\Facades\Input;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::resource('/', 'ProductController');
 
-Route::get('/', function () {
-	$products = Product::paginate(6);
-	// dd($products);
-    return view('layouts.index')->with('products',$products);
-});
-
-	/*Route::get('/', function(){
-		return 'abc';
-	});*/
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
-//login
-Route::get('/login', function(){
-	return view('layouts.login');
-});
-//end login
-
 //product-detail
-Route::get('/product-detail/{product}', function(Product $product){
-	// $product = Product::all()->find($product);
-	// dd($product);
-	return view('layouts.product-detail')->with('product', $product);
-});
 
-Route::get('/admin', function(){
-	$products = Product::all();
-	return view('auth.index')->with('products', $products);
-});
-
-//Route::get('/test', function(){
-	//return view('auth.partials.forms.product');
-//});
-
-Route::get('/product', function(){
-	return view('auth.product.create');
-});
