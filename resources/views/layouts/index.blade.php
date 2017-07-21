@@ -31,5 +31,11 @@
 			</div>
 		</div>
 		@endforeach
+
 	</div>
+	<div style="    position: absolute;
+    top: 1030px !important;">
+		{!! $products->render() !!}
+	</div>
+	
 @stop
