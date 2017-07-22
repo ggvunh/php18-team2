@@ -42,7 +42,7 @@
 	                  <th>&nbsp;</th>
 	                  <th>&nbsp;</th>
 	                  <th>&nbsp;</th>
-	                  <th><a href="#"><span class="glyphicon glyphicon-plus"></span>Thêm mới</a></th>
+	                  <th><a href="{{ url('admin/products/create')}}"><span class="glyphicon glyphicon-plus"></span>Thêm mới</a></th>
                 </tr>
                 </tfoot>
               </table>

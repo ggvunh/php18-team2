@@ -7,7 +7,7 @@
 			<div class="product-image-wrapper">
 				<div class="single-products">
 						<div class="productinfo text-center">
-							<img src="{{ $product->images }}" alt="" />
+							<img src="{{ $product->images }}" alt="{{ $product->name}}" title="{{ $product->name}}" style="height: 250px" />
 							<h2><?php echo number_format($product->price, 0, ',', ',').'đ' ?></h2>
 							<p>{{ $product->name }}</p>
 							<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
