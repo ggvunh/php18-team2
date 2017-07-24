@@ -18,7 +18,9 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::paginate(6);
-        return view('layouts.index')->with('products',$products);    }
+        $categories = Category::all();
+        $brands = Brand::all();
+        return view('layouts.index')->with(['products' => $products, 'catgories' => $categories, 'brands' => $brands]);    }
 
     /**
      * Show the form for creating a new resource.
