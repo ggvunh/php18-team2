@@ -101,7 +101,7 @@
 		<div class="header-bottom"><!--header-bottom-->
 			<div class="container">
 				<div class="row">
-					<div class="col-sm-9">
+					<div class="col-sm-6">
 						<div class="navbar-header">
 							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 								<span class="sr-only">Toggle navigation</span>
@@ -133,9 +133,14 @@
 							</ul>
 						</div>
 					</div>
-					<div class="col-sm-3">
+					<div class="col-sm-6">
 						<div class="search_box pull-right">
-							<input type="text" placeholder="Search"/>
+							<form action="{{ url('/search')}}" method="get">
+								{!! Form::select('category', $categories, ['class' => 'form-control'], ['style' => 'width: 130px']) !!}
+								<input type="text" placeholder="Search" id="keyword" name="keyword" />
+								<button type="submit" class="btn btn-search">Tìm kiếm</button>
+							</form>
+							
 						</div>
 					</div>
 				</div>

@@ -25,6 +25,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 //product-detail
 
 Route::get('/product-detail/{product}', 'ProductController@product_detail');
+Route::get('/search', function(){
+	$keyword = Input::get('keyword', ' ');
+	$category = Input::get('category', '');
+	$products = Product::search($keyword, $category)->paginate(6);
+	return view('layouts.search_product')->with('products',$products);
+});
 
 ///admin
 Route::get('/admin/products', function(){
@@ -56,6 +62,8 @@ Route::post('admin/products', function(Request $request){
 	$file_name = 'images/product/' . $name;
 	
 	
-	$product = Product::create(['name' => $request->Input('name'), 'price' => $request->Input('price'), 'images' => $file_name, 'active' => $request->Input('active'), 'Category_id' => $request->Input('Category_id'), 'brand_id' => $request->Input('brand_id'), 'quantity' => $request->Input('quantity'), 'detail' => $request->Input('detail')  ]);
+	$product = Product::create(['name' => $request->Input('name'), 'price' => $request->Input('price'), 'images' => $file_name, 'active' => $request->Input('active'), 'category_id' => $request->Input('category_id'), 'brand_id' => $request->Input('brand_id'), 'quantity' => $request->Input('quantity'), 'detail' => $request->Input('detail')  ]);
 	return redirect('admin');
-});
+	});
+
+
