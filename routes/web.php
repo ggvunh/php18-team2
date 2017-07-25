@@ -72,4 +72,23 @@ Route::post('admin/products', function(Request $request){
 Route::get('admin/products/delete/{product}', function(Product $product){
 	 $product->delete();
 	 return redirect('admin');
+
 });
+
+Route::get('admin/products/edit/{product}', function(Product $product){
+	$brands = Brand::all();
+	return view('auth.product.edit')->with('product' , $product)->with('brands', $brands);
+});
+
+Route::put('admin/products/{product}', function(Product $product, request $request){
+	$active = $request->input('active');
+
+	if ( $active == 'on' )
+		Input::merge(array('active' => '1'));
+	else
+		Input::merge(array('active' => '0'));
+
+	$product->update(['name' => $request->Input('name'), 'price' => $request->Input('price'), 'active' => $request->Input('active'), 'category_id' => $request->Input('category_id'), 'brand_id' => $request->Input('brand_id'), 'quantity' => $request->Input('quantity'), 'detail' => $request->Input('detail')  ]);
+
+	return redirect('admin');
+});	
