@@ -10,7 +10,7 @@ Class ProductFromComposer {
   }
   public function compose(View $view)
   {
-    $view->with('categories', $this->categories->pluck('name', 'id'));
+    $view->with(['categories' => $this->categories->pluck('name', 'id'), 'brand' => '']);
     // dd($this->breeds->pluck('name', 'id'));
   }
 }

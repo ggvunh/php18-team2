@@ -31,7 +31,7 @@
 	                  	<a href="#"><span class="glyphicon glyphicon-pencil"></span></a>
 	                  </th>
 	                  <th>
-	                  	<a href="#"><span class="glyphicon glyphicon-remove"></span></a>
+	                  	<a href="{{ url('admin/products/delete/'. $product->id) }}"><span class="glyphicon glyphicon-remove"></span></a>
 	                  </th>
 	                </tr>
                 @endforeach
