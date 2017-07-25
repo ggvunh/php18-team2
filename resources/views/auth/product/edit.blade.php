@@ -3,7 +3,7 @@
 @stop
 @section('content')
   
-  {!! Form::open(['url' => '/admin/products', 'enctype' => 'multipart/form-data']) !!}
+  {!! Form::model($product,['url' => 'admin/products/'. $product->id, 'method' => 'put' ]) !!}
     @include('auth.partials.forms.product')
   {!! Form::close() !!} 
 @stop
