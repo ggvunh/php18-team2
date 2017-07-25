@@ -28,9 +28,11 @@ Route::get('/product-detail/{product}', 'ProductController@product_detail');
 Route::get('/search', function(){
 	$keyword = Input::get('keyword', ' ');
 	$category = Input::get('category', '');
-	$products = Product::search($keyword, $category)->paginate(6);
+	$products = Product::search($keyword)->paginate(6);
 	return view('layouts.search_product')->with('products',$products);
 });
+
+
 
 ///admin
 Route::get('/admin/products', function(){
@@ -67,3 +69,7 @@ Route::post('admin/products', function(Request $request){
 	});
 
 
+Route::get('admin/products/delete/{product}', function(Product $product){
+	 $product->delete();
+	 return redirect('admin');
+});

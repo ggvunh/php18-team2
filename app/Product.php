@@ -28,7 +28,7 @@ class Product extends Model
         return $query;
     }
 
-    public static function search($name, $category){
+    /*public static function search($name, $category){
         if (empty($name))
         {
             $products = Product::where('category_id', '=', $category);
@@ -38,5 +38,14 @@ class Product extends Model
             $products =Product::where('name', 'like', '%' . $name . '%' )->where('category_id', '=', $category);
         }
         return $products;
+    }*/
+
+    public static function search($keyword){
+
+        $products = Product::whereHas('Category', function($q) use($keyword)
+        {
+            $q->where('name', 'like', '%'.$keyword.'%');
+        })->orwhere('name', 'like', '%' .$keyword. '%');
+        return $products;
+        }
     }
-}
