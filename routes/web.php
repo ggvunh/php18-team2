@@ -39,4 +39,5 @@ Route::get('/admin', function(){
 
 Route::get('admin/products/delete/{product}', 'AdminProductController@delete');
 
-
+Route::resource('admin/categories', 'AdminCategoryController');
+Route::get('admin/categories/delete/{category}', 'AdminCategoryController@delete');
