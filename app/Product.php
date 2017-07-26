@@ -48,4 +48,16 @@ class Product extends Model
         })->orwhere('name', 'like', '%' .$keyword. '%');
         return $products;
         }
+
+    public static function search_admin($keyword){
+        $products = Product::whereHas('Brand', function($q) use($keyword)
+        {
+            $q->where('name', 'like', '%'.$keyword.'%');
+            })->orwhere('name', 'like', '%' .$keyword. '%');
+            return $products;
+        }
+
     }
+
+    
+    

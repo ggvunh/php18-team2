@@ -117,4 +117,10 @@ class AdminProductController extends Controller
         $product->delete();
         return redirect('admin');
     }
+
+    public function search(){
+        $keyword = Input::get('keyword', '');
+        $products = Product::search($keyword)->paginate(6);
+        return view('auth.index')->with('products',$products);
+    }
 }

@@ -311,20 +311,19 @@
         </div>
       </div>
       <!-- search form -->
-      <form action="#" method="get" class="sidebar-form">
+      <form action="{{ url('admin/products/search')}}" method="get" class="sidebar-form">
         <div class="input-group">
-          <input type="text" name="q" class="form-control" placeholder="Search...">
+          <input type="text" name="keyword" class="form-control" placeholder="Search...">
           <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                </button>
-              </span>
+                <button type="submit" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
+          </span>
         </div>
       </form>
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">DANH MỤC</li>
-        <li class="active treeview">
+        <li class="treeview">
           <a href="#">
             <i class="#"></i> <span>Sản Phẩm</span>
             <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
@@ -334,9 +333,9 @@
             <li><a href="{{ url('admin/products')}}"><i class="fa fa-circle-o"></i> List sản phẩm</a></li>
           </ul>
         </li>
-          <li class="active treeview">
+          <li class="treeview">
           <a href="#">
-            <i class=""></i> <span>Danh Mục</span>
+            <i class="treeview"></i> <span>Danh Mục</span>
             <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
           </a>
           <ul class="treeview-menu" style="display: none;">
@@ -344,7 +343,8 @@
             <li><a href="{{ url('admin/categories')}}"><i class="fa fa-circle-o"></i> List danh mục</a></li>
           </ul>
         </li>
-          <li class="active treeview">
+
+          <li class="treeview">
           <a href="#">
             <i class="#"></i> <span>Thương Hiệu</span>
             <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
@@ -354,6 +354,7 @@
             <li><a href="{{ url('admin/brands')}}"><i class="fa fa-circle-o"></i> List thương hiêu</a></li>
           </ul>
         </li>
+
       
       </ul>
     </section>
