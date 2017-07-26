@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Product;
 use App\Category;
 use App\Brand;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
 
-class ProductController extends Controller
+class AdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,10 +18,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::paginate(6);
-        $categories = Category::all();
-        $brands = Brand::all();
-        return view('layouts.index')->with(['products' => $products, 'catgories' => $categories, 'brands' => $brands]);    }
+       //
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -86,18 +85,5 @@ class ProductController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function product_detail(Product $product)
-    {
-        return view('layouts.product-detail')->with('product', $product);
-    }
-
-    public function search()
-    {
-        $keyword = Input::get('keyword', ' ');
-        $category = Input::get('category', '');
-        $products = Product::search($keyword)->paginate(6);
-        return view('layouts.search_product')->with('products',$products);
     }
 }

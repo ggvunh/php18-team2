@@ -25,70 +25,18 @@ Route::get('/home', 'HomeController@index')->name('home');
 //product-detail
 
 Route::get('/product-detail/{product}', 'ProductController@product_detail');
-Route::get('/search', function(){
-	$keyword = Input::get('keyword', ' ');
-	$category = Input::get('category', '');
-	$products = Product::search($keyword)->paginate(6);
-	return view('layouts.search_product')->with('products',$products);
-});
+
+Route::get('/search', 'ProductController@search');
 
 
 
 ///admin
-Route::get('/admin/products', function(){
-	$products = Product::all();
-	return view('auth.index')->with('products', $products);
-});
+Route::resource('/admin/products', 'AdminProductController');
 
 Route::get('/admin', function(){
 	return redirect('/admin/products');
 });
-Route::get('/admin/products/create', function(){
-	$brands = Brand::all();
-	return view('auth.product.create')->with('brands', $brands);
-});
 
-Route::post('admin/products', function(Request $request){
-	$active = $request->input('active');
-
-	if ( $active == 'on' )
-		Input::merge(array('active' => '1'));
-	else
-		Input::merge(array('active' => '0'));
-
-	//upfile
-	$data = $request->all();
-	$name = time() . '-' .Input::file('images')->getClientOriginalName();
-
-	$a = Input::file('images')->move('../public/images/product', $name);
-	$file_name = 'images/product/' . $name;
-	
-	
-	$product = Product::create(['name' => $request->Input('name'), 'price' => $request->Input('price'), 'images' => $file_name, 'active' => $request->Input('active'), 'category_id' => $request->Input('category_id'), 'brand_id' => $request->Input('brand_id'), 'quantity' => $request->Input('quantity'), 'detail' => $request->Input('detail')  ]);
-	return redirect('admin');
-	});
+Route::get('admin/products/delete/{product}', 'AdminProductController@delete');
 
 
-Route::get('admin/products/delete/{product}', function(Product $product){
-	 $product->delete();
-	 return redirect('admin');
-
-});
-
-Route::get('admin/products/edit/{product}', function(Product $product){
-	$brands = Brand::all();
-	return view('auth.product.edit')->with('product' , $product)->with('brands', $brands);
-});
-
-Route::put('admin/products/{product}', function(Product $product, request $request){
-	$active = $request->input('active');
-
-	if ( $active == 'on' )
-		Input::merge(array('active' => '1'));
-	else
-		Input::merge(array('active' => '0'));
-
-	$product->update(['name' => $request->Input('name'), 'price' => $request->Input('price'), 'active' => $request->Input('active'), 'category_id' => $request->Input('category_id'), 'brand_id' => $request->Input('brand_id'), 'quantity' => $request->Input('quantity'), 'detail' => $request->Input('detail')  ]);
-
-	return redirect('admin');
-});	

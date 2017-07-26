@@ -35,7 +35,7 @@
 					  </form>
 					  </th>
 	                  <th>
-	                  	<a href="{{ url('admin/products/edit/'. $product->id)}}"><span class="glyphicon glyphicon-pencil"></span></a>
+	                  	<a href="{{ url('admin/products/'. $product->id . '/edit')}}"><span class="glyphicon glyphicon-pencil"></span></a>
 	                  </th>
 	                  <th>
 	                  	<a href="{{ url('admin/products/delete/'. $product->id) }}"><span class="glyphicon glyphicon-remove"></span></a>
