@@ -38,6 +38,9 @@ Route::get('/admin', function(){
 });
 
 Route::get('admin/products/delete/{product}', 'AdminProductController@delete');
-
+///admin category
 Route::resource('admin/categories', 'AdminCategoryController');
 Route::get('admin/categories/delete/{category}', 'AdminCategoryController@delete');
+///admin brans
+Route::resource('admin/brands', 'AdminBrandController');
+Route::get('admin/brands/delete/{brand}', 'AdminBrandController@delete');
