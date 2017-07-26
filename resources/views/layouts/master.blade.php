@@ -88,7 +88,7 @@
 
 								</li>
 								@else
-								<li><a href="{{ url('login') }}"><i class="fa fa-lock"></i> Đăng Nhập</a></li>
+								<li><a href="{{ url('login') }}"><i class="fa fa-user" aria-hidden="true"></i> Đăng Nhập</a></li>
 								<li><a href="{{ url('register') }}"><i class="fa fa-lock"></i> Đăng Ký</a></li>
 								@endif
 							</ul>
