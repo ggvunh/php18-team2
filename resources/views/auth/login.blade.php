@@ -5,16 +5,16 @@
         <div class="row">
             <div class="col-sm-4 col-sm-offset-1">
                 <div class="login-form"><!--login form-->
-                    <h2>Login to your account</h2>
+                    <h2>Đăng nhập vào tài khoản</h2>
                     <form method="POST" action="{{ url('login') }}">
                         {{ csrf_field() }}
-                        <input type="text" id="email" name="email" placeholder="Email address" />
-                        <input type="password" id="password" name="password" placeholder="password" />
+                        <input type="text" id="email" name="email" placeholder="Email " />
+                        <input type="password" id="password" name="password" placeholder="Mật khẩu" />
                         <span>
                             <input type="checkbox" class="checkbox"> 
-                            Keep me signed in
+                            Giữ trạng thái đăng nhập
                         </span>
-                        <button type="submit" class="btn btn-default">Login</button>
+                        <button type="submit" class="btn btn-default">Đăng nhập</button>
                     </form>
                 </div><!--/login form-->
             </div>

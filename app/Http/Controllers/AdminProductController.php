@@ -17,7 +17,7 @@ class AdminProductController extends Controller
      */
     public function index()
     {
-         $products = Product::all();
+        $products = Product::all();
         return view('auth.index')->with('products', $products);
     }
 
