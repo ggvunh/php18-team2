@@ -18,7 +18,7 @@
 
 								<h2><?php echo number_format($product->price, 0, ',', ',').'đ' ?></h2>
 								<p>{{ $product->name }}</p>
-								<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm Vào Giỏ Hàng</a>
+								<a href="{{ url('cart/' . $product->id)}}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm Vào Giỏ Hàng</a>
 							</div>
 						</div>
 						

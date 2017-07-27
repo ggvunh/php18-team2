@@ -15,13 +15,13 @@
              </div>
             <div class="form-group">
                 {!! Form::label('category', 'Danh mục')!!}
-                {!! Form::select('category_id', $categories, ['class' => 'form-control'], ['class' => 'form-control']) !!}             
+                {!! Form::select('category_id', $categories, null, ['class' => 'form-control'], ['class' => 'form-control']) !!}             
             </div>
 
 
             <div class="form-group">
                 {!! Form::label('brand', 'Brand')!!}
-                {!! Form::select('brand_id', $brands, ['class' => 'form-control'], ['class' => 'form-control']) !!}             
+                {!! Form::select('brand_id', $brands, null, ['class' => 'form-control'], ['class' => 'form-control']) !!}             
             </div>
 
             <div class="form-group">
