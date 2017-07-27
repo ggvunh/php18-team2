@@ -44,7 +44,11 @@ Route::get('admin/categories/delete/{category}', 'AdminCategoryController@delete
 ///admin brans
 Route::resource('admin/brands', 'AdminBrandController');
 Route::get('admin/brands/delete/{brand}', 'AdminBrandController@delete');
-///cart
+
+///carts
 Route::get('/carts', 'CartController@index');
 Route::get('cart/{product}', 'CartController@add');
-Route::get('cart/delete/{rowId}', 'CartController@delete');
+//parameters
+Route::resource('admin/parameters', 'AdminParameterController');
+Route::get('admin/parameters/delete/{parameter}', 'AdminParameterController@delete');
+

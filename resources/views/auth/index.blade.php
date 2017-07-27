@@ -4,7 +4,15 @@
           <div class="box">
             <div class="box-header">
               <h3 class="box-title">Danh Sách Sản Phẩm</h3>
-
+              <a style="float: right;" href="{{ url('admin/products/create')}}"><span class="glyphicon glyphicon-plus"></span>Thêm mới</a>
+              <form action="{{ url('admin/products/search')}}" method="get" >
+                <div class="input-group">
+                  <input type="text" name="keyword" class="form-control" placeholder="Search...">
+                  <span class="input-group-btn">
+                  <button type="submit" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
+                  </span>
+                </div>
+              </form>
             </div>
             <!-- /.box-header -->
            <div class="box-body">
@@ -42,10 +50,8 @@
 	                  </th>
 	                </tr>
                 @endforeach
-                </tbody>
-              
+                </tbody>       
               </table>
-              <a style="float: right; margin-top: 15px;" href="{{ url('admin/products/create')}}"><span class="glyphicon glyphicon-plus"></span>Thêm mới</a>
             </div>
             <!-- /.box-body -->
           </div>
