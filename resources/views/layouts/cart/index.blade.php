@@ -66,7 +66,7 @@
 						<div class="shop-menu pull-right">
 							<ul class="nav navbar-nav">
 								<!-- <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li> -->
-								<li><a href="{{ url('carts')}}"><i class="fa fa-shopping-cart"></i> Giỏ Hàng ({{ Cart::count() }})</a></li>
+								<li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Giỏ Hàng</a></li>
 								@if (Auth::check())
 								<li>
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -146,142 +146,196 @@
 			</div>
 		</div><!--/header-bottom-->
 	</header><!--/header-->
-	<section>
+
+	<section id="cart_items">
 		<div class="container">
+			<div class="breadcrumbs">
+				<ol class="breadcrumb">
+				  <li><a href="#">Home</a></li>
+				  <li class="active">Shopping Cart</li>
+				</ol>
+			</div>
+			<div class="table-responsive cart_info">
+				<table class="table table-condensed">
+					<thead>
+						<tr class="cart_menu">
+							<td class="image">Item</td>
+							<td class="description"></td>
+							<td class="price">Price</td>
+							<td class="quantity">Quantity</td>
+							<td class="total">Total</td>
+							<td></td>
+						</tr>
+					</thead>
+					<tbody>
+					<?php $content = Cart::content() ?>
+					@foreach ($content as $item)
+						<tr>
+							<td class="cart_product">
+								<a href=""><img src="{{ url($item->options->images) }}" style="width: 110px; margin-right: 25px" alt=""></a>
+							</td>
+							<td class="cart_description">
+								<h4><a href="">{{$item->name}}</a></h4>
+							</td>
+							<td class="cart_price">
+								<p style="margin-top: 20px">{{ number_format($item->price, 2, ',',',') . ' VNĐ'}}</p>
+							</td>
+							<td class="cart_quantity">
+								<div class="cart_quantity_button">
+									<a class="cart_quantity_up" href=""> + </a>
+									<input class="cart_quantity_input" type="text" name="quantity" value="{{$item->qty}}" autocomplete="off" size="2">
+									<a class="cart_quantity_down" href=""> - </a>
+								</div>
+							</td>
+							<td class="cart_total">
+								<p class="cart_total_price" style="margin-top: 20px">{{ number_format($item->subtotal, 2, ',',',') . ' VNĐ' }}</p>
+							</td>
+							<td class="cart_delete">
+								<a class="cart_quantity_delete" href="{{ url('cart/delete/' . $item->rowId) }}"><i class="fa fa-times"></i></a>
+							</td>
+						</tr>
+					@endforeach
+						<tr>
+							<td class="cart_total" colspan="4" style="text-align: right !important;">
+								<p class="cart_total_price" style="color: #666; font-weight: bold;"> Tổng Cộng: </p>
+							</td>
+							<td>
+								<p class="cart_total_price">{{ Cart::total() . ' VNĐ' }}</p>
+							</td>
+						</tr>
+						<!-- <tr>
+							<td class="cart_product">
+								<a href=""><img src="images/cart/two.png" alt=""></a>
+							</td>
+							<td class="cart_description">
+								<h4><a href="">Colorblock Scuba</a></h4>
+								<p>Web ID: 1089772</p>
+							</td>
+							<td class="cart_price">
+								<p>$59</p>
+							</td>
+							<td class="cart_quantity">
+								<div class="cart_quantity_button">
+									<a class="cart_quantity_up" href=""> + </a>
+									<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
+									<a class="cart_quantity_down" href=""> - </a>
+								</div>
+							</td>
+							<td class="cart_total">
+								<p class="cart_total_price">$59</p>
+							</td>
+							<td class="cart_delete">
+								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
+							</td>
+						</tr>
+						<tr>
+							<td class="cart_product">
+								<a href=""><img src="images/cart/three.png" alt=""></a>
+							</td>
+							<td class="cart_description">
+								<h4><a href="">Colorblock Scuba</a></h4>
+								<p>Web ID: 1089772</p>
+							</td>
+							<td class="cart_price">
+								<p>$59</p>
+							</td>
+							<td class="cart_quantity">
+								<div class="cart_quantity_button">
+									<a class="cart_quantity_up" href=""> + </a>
+									<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
+									<a class="cart_quantity_down" href=""> - </a>
+								</div>
+							</td>
+							<td class="cart_total">
+								<p class="cart_total_price">$59</p>
+							</td>
+							<td class="cart_delete">
+								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
+							</td>
+						</tr> -->
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</section> <!--/#cart_items-->
+
+	<section id="do_action">
+		<div class="container">
+			<div class="heading">
+				<h3>What would you like to do next?</h3>
+				<p>Choose if you have a discount code or reward points you want to use or would like to estimate your delivery cost.</p>
+			</div>
 			<div class="row">
-				<div class="col-sm-3">
-					<div class="left-sidebar">
-						<h2>Danh mục Sản Phẩm</h2>
-						<div class="panel-group category-products" id="accordian"><!--category-productsr-->
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title">
-										<a data-toggle="collapse" data-parent="#accordian" href="#sportswear">
-											<span class="badge pull-right"><i class="fa fa-plus"></i></span>
-											Laptop
-										</a>
-									</h4>
-								</div>
-								<div id="sportswear" class="panel-collapse collapse">
-									<div class="panel-body">
-										<ul>
-											<li><a href="#">Del</a></li>
-											<li><a href="#">HP </a></li>
-											<li><a href="#">Asus </a></li>
-											<li><a href="#">Acer</a></li>
-											<li><a href="#">Sony </a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title">
-										<a data-toggle="collapse" data-parent="#accordian" href="#mens">
-											<span class="badge pull-right"><i class="fa fa-plus"></i></span>
-											Điện Thoại
-										</a>
-									</h4>
-								</div>
-								<div id="mens" class="panel-collapse collapse">
-									<div class="panel-body">
-										<ul>
-											<li><a href="#">Apple (Iphone)</a></li>
-											<li><a href="#">Samsung</a></li>
-											<li><a href="#">LG</a></li>
-											<li><a href="#">Sony</a></li>
-											<li><a href="#">Nokia</a></li>
-											<li><a href="#">HTC</a></li>
-											<li><a href="#">OPPO</a></li>
-											<li><a href="#">Xiaomi</a></li>
-											<li><a href="#">MEIZU</a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
+				<div class="col-sm-6">
+					<div class="chose_area">
+						<ul class="user_option">
+							<li>
+								<input type="checkbox">
+								<label>Use Coupon Code</label>
+							</li>
+							<li>
+								<input type="checkbox">
+								<label>Use Gift Voucher</label>
+							</li>
+							<li>
+								<input type="checkbox">
+								<label>Estimate Shipping & Taxes</label>
+							</li>
+						</ul>
+						<ul class="user_info">
+							<li class="single_field">
+								<label>Country:</label>
+								<select>
+									<option>United States</option>
+									<option>Bangladesh</option>
+									<option>UK</option>
+									<option>India</option>
+									<option>Pakistan</option>
+									<option>Ucrane</option>
+									<option>Canada</option>
+									<option>Dubai</option>
+								</select>
+								
+							</li>
+							<li class="single_field">
+								<label>Region / State:</label>
+								<select>
+									<option>Select</option>
+									<option>Dhaka</option>
+									<option>London</option>
+									<option>Dillih</option>
+									<option>Lahore</option>
+									<option>Alaska</option>
+									<option>Canada</option>
+									<option>Dubai</option>
+								</select>
 							
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title">
-										<a data-toggle="collapse" data-parent="#accordian" href="#womens">
-											<span class="badge pull-right"><i class="fa fa-plus"></i></span>
-											Apple iStore
-										</a>
-									</h4>
-								</div>
-								<div id="womens" class="panel-collapse collapse">
-									<div class="panel-body">
-										<ul>
-											<li><a href="#">Macbook</a></li>
-											<li><a href="#">iPhone</a></li>
-											<li><a href="#">iPad</a></li>
-											<li><a href="#">iMac</a></li>
-											<li><a href="#">iPod</a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Máy Tính Bảng</a></h4>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Desktop</a></h4>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Phụ Kiện</a></h4>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">TB Văn Phòng</a></h4>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Khuyến Mãi</a></h4>
-								</div>
-							</div>
-							
-						</div><!--/category-products-->
-					
-						<div class="brands_products"><!--brands_products-->
-							<h2>Thương Hiệu</h2>
-							<div class="brands-name">
-								<ul class="nav nav-pills nav-stacked">
-									<li><a href="#"> <span class="pull-right">(50)</span>Apple</a></li>
-									<li><a href="#"> <span class="pull-right">(56)</span>Dell</a></li>
-									<li><a href="#"> <span class="pull-right">(27)</span>Asus</a></li>
-									<li><a href="#"> <span class="pull-right">(32)</span>HP</a></li>
-									<li><a href="#"> <span class="pull-right">(5)</span>Lenovo</a></li>
-									<li><a href="#"> <span class="pull-right">(9)</span>Acer</a></li>
-									<li><a href="#"> <span class="pull-right">(4)</span>Sony</a></li>
-								</ul>
-							</div>
-						</div><!--/brands_products-->
-						
-						
-						
-						<div class="shipping text-center"><!--shipping-->
-							<img src="{{ asset('images/home/123.jpg') }}" alt="" />
-						</div><!--/shipping-->
-					
+							</li>
+							<li class="single_field zip-field">
+								<label>Zip Code:</label>
+								<input type="text">
+							</li>
+						</ul>
+						<a class="btn btn-default update" href="">Get Quotes</a>
+						<a class="btn btn-default check_out" href="">Continue</a>
 					</div>
 				</div>
-				<div class="col-sm-9 padding-right">
-					@yield('content')
-				</div>
-				
-					
+				<div class="col-sm-6">
+					<div class="total_area">
+						<ul>
+							<li>Cart Sub Total <span>$59</span></li>
+							<li>Eco Tax <span>$2</span></li>
+							<li>Shipping Cost <span>Free</span></li>
+							<li>Total <span>$61</span></li>
+						</ul>
+							<a class="btn btn-default update" href="">Update</a>
+							<a class="btn btn-default check_out" href="">Check Out</a>
+					</div>
 				</div>
 			</div>
 		</div>
-	</section>
-	
+	</section><!--/#do_action-->
+
 	<footer id="footer"><!--Footer-->
 		
 		<div class="footer-widget">
