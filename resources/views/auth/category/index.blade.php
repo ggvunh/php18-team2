@@ -4,6 +4,8 @@
           <div class="box">
             <div class="box-header">
               <h3 class="box-title">Danh Sách Danh Mục</h3>
+              <a style="float: right;" href="{{ url('admin/products/create')}}"><span class="glyphicon glyphicon-plus"></span>Thêm mới</a>
+              
             </div>
             <!-- /.box-header -->
            <div class="box-body">
@@ -32,7 +34,6 @@
                 </tbody>
               
               </table>
-              <a style="float: right; margin-top: 15px;" href="{{ url('admin/categories/create')}}"><span class="glyphicon glyphicon-plus"></span>Thêm mới</a>
             </div>
             <!-- /.box-body -->
           </div>
