@@ -4,7 +4,7 @@
           <div class="box">
             <div class="box-header">
               <h3 class="box-title">Danh Sách Danh Mục</h3>
-              <a style="float: right;" href="{{ url('admin/products/create')}}"><span class="glyphicon glyphicon-plus"></span>Thêm mới</a>
+              <a style="float: right;" href="{{ url('admin/categories/create')}}"><span class="glyphicon glyphicon-plus"></span>Thêm mới</a>
               
             </div>
             <!-- /.box-header -->

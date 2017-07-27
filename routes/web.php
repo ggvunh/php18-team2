@@ -44,3 +44,6 @@ Route::get('admin/categories/delete/{category}', 'AdminCategoryController@delete
 ///admin brans
 Route::resource('admin/brands', 'AdminBrandController');
 Route::get('admin/brands/delete/{brand}', 'AdminBrandController@delete');
+
+Route::resource('admin/parameters', 'AdminParameterController');
+Route::get('admin/parameters/delete/{parameter}', 'AdminParameterController@delete');

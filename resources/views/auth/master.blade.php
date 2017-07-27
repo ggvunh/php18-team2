@@ -357,7 +357,7 @@
             <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
           </a>
           <ul class="treeview-menu" style="display: none;">
-            <li><a href="{{ url('admin/brands')}}"><i class="fa fa-circle-o"></i> List thông số</a></li>
+            <li><a href="{{ url('admin/parameters')}}"><i class="fa fa-circle-o"></i> List thông số</a></li>
           </ul>
         </li>      
       </ul>
