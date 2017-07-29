@@ -57,3 +57,5 @@ Route::get('ajax', function(){
 	$products = Cart::content();
 	return view('layouts.ajax')->with('products', $products);
 });
+Route::resource('admin/orders', 'AdminOrderController');
+Route::resource('admin/orderdetails', 'AdminOrderDetailController');

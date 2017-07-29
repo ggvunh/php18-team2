@@ -13,6 +13,7 @@
                 <tr>
                   <th>STT</th>
                   <th>Tên Thông Số</th>
+                  <th>Tên Sản Phẩm</th>
                   <th>Sửa</th>
                   <th>Xóa</th>
                 </tr>
@@ -22,7 +23,8 @@
                   <tr>
                     <th>{{ $parameter->id }}</th>
                     <th>{{ $parameter->name}}</th>
-                    <th>
+                    <th>{{ App\Product::find($parameter->product_id)->name}}</th> 
+                    <th>           
                       <a href="{{ url('admin/parameters/'. $parameter->id . '/edit')}}"><span class="glyphicon glyphicon-pencil"></span></a>
                     </th>
                     <th>
