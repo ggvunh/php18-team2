@@ -66,7 +66,11 @@
 						<div class="shop-menu pull-right">
 							<ul class="nav navbar-nav">
 								<!-- <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li> -->
-								<li><a href="{{ url('carts')}}"><i class="fa fa-shopping-cart"></i> Giỏ Hàng ({{ Cart::count() }})</a></li>
+								@if ( Cart::count() > 0 )
+								<li><a href="{{ url('carts')}}"><i class="fa fa-shopping-cart"></i><span id="count"> Giỏ Hàng({{ Cart::count() }})</span></a></li>
+								@else
+								<li><a href="{{ url('carts')}}"><i class="fa fa-shopping-cart"></i><span id="count"> Giỏ Hàng</span></a></li>
+								@endif
 								@if (Auth::check())
 								<li>
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">

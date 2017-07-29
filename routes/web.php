@@ -47,8 +47,13 @@ Route::get('admin/brands/delete/{brand}', 'AdminBrandController@delete');
 
 ///carts
 Route::get('/carts', 'CartController@index');
-Route::get('cart/{product}', 'CartController@add');
+Route::get('carts/{id}/add', 'CartController@add');
+Route::get('carts/delete/{rowId}', 'CartController@delete');
 //parameters
 Route::resource('admin/parameters', 'AdminParameterController');
 Route::get('admin/parameters/delete/{parameter}', 'AdminParameterController@delete');
 
+Route::get('ajax', function(){
+	$products = Cart::content();
+	return view('layouts.ajax')->with('products', $products);
+});

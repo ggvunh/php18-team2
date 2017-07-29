@@ -146,7 +146,7 @@
 			</div>
 		</div><!--/header-bottom-->
 	</header><!--/header-->
-
+@if ( Cart::count() > 0)
 	<section id="cart_items">
 		<div class="container">
 			<div class="breadcrumbs">
@@ -191,7 +191,7 @@
 								<p class="cart_total_price" style="margin-top: 20px">{{ number_format($item->subtotal, 2, ',',',') . ' VNĐ' }}</p>
 							</td>
 							<td class="cart_delete">
-								<a class="cart_quantity_delete" href="{{ url('cart/delete/' . $item->rowId) }}"><i class="fa fa-times"></i></a>
+								<a class="cart_quantity_delete" href="{{ url('carts/delete/' . $item->rowId) }}"><i class="fa fa-times"></i></a>
 							</td>
 						</tr>
 					@endforeach
@@ -203,56 +203,7 @@
 								<p class="cart_total_price">{{ Cart::total() . ' VNĐ' }}</p>
 							</td>
 						</tr>
-						<!-- <tr>
-							<td class="cart_product">
-								<a href=""><img src="images/cart/two.png" alt=""></a>
-							</td>
-							<td class="cart_description">
-								<h4><a href="">Colorblock Scuba</a></h4>
-								<p>Web ID: 1089772</p>
-							</td>
-							<td class="cart_price">
-								<p>$59</p>
-							</td>
-							<td class="cart_quantity">
-								<div class="cart_quantity_button">
-									<a class="cart_quantity_up" href=""> + </a>
-									<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-									<a class="cart_quantity_down" href=""> - </a>
-								</div>
-							</td>
-							<td class="cart_total">
-								<p class="cart_total_price">$59</p>
-							</td>
-							<td class="cart_delete">
-								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-							</td>
-						</tr>
-						<tr>
-							<td class="cart_product">
-								<a href=""><img src="images/cart/three.png" alt=""></a>
-							</td>
-							<td class="cart_description">
-								<h4><a href="">Colorblock Scuba</a></h4>
-								<p>Web ID: 1089772</p>
-							</td>
-							<td class="cart_price">
-								<p>$59</p>
-							</td>
-							<td class="cart_quantity">
-								<div class="cart_quantity_button">
-									<a class="cart_quantity_up" href=""> + </a>
-									<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-									<a class="cart_quantity_down" href=""> - </a>
-								</div>
-							</td>
-							<td class="cart_total">
-								<p class="cart_total_price">$59</p>
-							</td>
-							<td class="cart_delete">
-								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-							</td>
-						</tr> -->
+
 					</tbody>
 				</table>
 			</div>
@@ -335,6 +286,15 @@
 			</div>
 		</div>
 	</section><!--/#do_action-->
+
+	@else
+	<section>
+		<div class="" style="text-align: center; margin: 10px">
+	        <h3 class="">Không có sản phẩm nào trong giỏ hàng</h3>
+		        <a href="{{ url('/')}}" class="btn btn-primary btn-lg active" role="button">Tiếp tục mua hàng</a>
+	    </div>
+	</section>
+	@endif
 
 	<footer id="footer"><!--Footer-->
 		
