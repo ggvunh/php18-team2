@@ -20,16 +20,20 @@ class CartController extends Controller
 	}
 
     public function add($id){
-    	$product = Product::find($id);
+    	/*$product = Product::find($id);
     	Cart::add($product->id, $product->name, 1, $product->price, ['images' => $product->images]);
     	// $content = Cart::content();
     	// dd($content);
-    	return redirect('/');
+    	return redirect('/');*/
+        $product = Product::find($id);
+        Cart::add($product->id, $product->name, 1, $product->price, ['images' => $product->images]);
+        $count = Cart::count();
+        return response(['count' => $count], 200);
     }
 
     public function delete($rowId)
     {
     	Cart::remove($rowId);
-    	return redirect('/carts');
+    	return redirect('/carts')->withSuccess('Cat has been deleted.');
     }
 }

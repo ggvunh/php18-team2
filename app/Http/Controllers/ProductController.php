@@ -98,6 +98,6 @@ class ProductController extends Controller
         $keyword = Input::get('keyword', ' ');
         $category = Input::get('category', '');
         $products = Product::search($keyword)->paginate(6);
-        return view('layouts.search_product')->with('products',$products);
+        return view('layouts.index')->with('products',$products)->withSuccess('Cat has been deleted.');
     }
 }
