@@ -22,7 +22,7 @@
                  <tr>
                   <td>{{ $orderdetail ->id}}</td>
                   <td>{{ $orderdetail ->quantity}}</td>
-                  <td>{{ number_format($orderdetail->price, 2, ',',',') . ' VNĐ'}}</td>
+                  <td>{{ $orderdetail->price . ' VNĐ'}}</td>
                   <td>{{ $orderdetail ->order_id}}</td>
                   <td>{{ $orderdetail ->product_id}}</td>
                 </tr>

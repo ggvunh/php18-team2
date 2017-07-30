@@ -209,7 +209,7 @@
 				</table>
 			</div>
 			<div class="total_area">
-			<a class="btn btn-default update" href="" style="font-size: 150%; float: right; margin-top: 0px"> Check Out </a>
+			<a class="btn btn-default update" href="{{ url('carts/checkout') }}" style="font-size: 150%; float: right; margin-top: 0px"> Check Out </a>
 			<a class="btn btn-default check_out" href="" style="font-size: 150%; float: right;margin-top: 0px"> Update </a>
 		</div>
 		</div>
