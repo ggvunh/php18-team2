@@ -182,10 +182,11 @@
 							</td>
 							<td class="cart_quantity">
 								<div class="cart_quantity_button">
-									<a class="cart_quantity_up" href=""> + </a>
-									<input class="cart_quantity_input" type="text" name="quantity" value="{{$item->qty}}" autocomplete="off" size="2">
-									<a class="cart_quantity_down" href=""> - </a>
-								</div>
+								<form>
+  									<input type="button" value=" - " onclick="ud_dec(this)">
+  									<input type="text" name="quantity" value="{{$item->qty}}" size="2" style="text-align: center;">
+  									<input type="button" value=" + " onclick="ud_inc(this)" >
+								</form>
 							</td>
 							<td class="cart_total">
 								<p class="cart_total_price" style="margin-top: 20px">{{ number_format($item->subtotal, 2, ',',',') . ' VNĐ' }}</p>
@@ -207,7 +208,12 @@
 					</tbody>
 				</table>
 			</div>
+			<div class="total_area">
+			<a class="btn btn-default update" href="" style="font-size: 150%; float: right; margin-top: 0px"> Check Out </a>
+			<a class="btn btn-default check_out" href="" style="font-size: 150%; float: right;margin-top: 0px"> Update </a>
 		</div>
+		</div>
+		
 	</section> <!--/#cart_items-->
 
 	<section id="do_action">
@@ -383,5 +389,26 @@
 	<script src="{{ asset('js/price-range.js') }}"></script>
     <script src="{{ asset('js/jquery.prettyPhoto.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
+    <script type="text/javascript">
+    function ud_find_text(self) {
+	    var children = self.parentNode.getElementsByTagName('input');
+	    for (var i = 0; i < children.length; i++) {
+	        if (children[i].getAttribute('type') == 'text') {
+	            return children[i];
+	        }
+	    }
+	}
+
+    function ud_inc(self) {
+    	var text = ud_find_text(self);
+    	text.value++;
+	}
+
+	function ud_dec(self) {
+	    var text = ud_find_text(self);
+	    if (text.value > 0) text.value--;
+	}
+
+    </script>
 </body>
 </html>
