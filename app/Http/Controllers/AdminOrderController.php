@@ -99,4 +99,41 @@ class AdminOrderController extends Controller
     {
         //
     }
+
+    public function search(Request $request)
+    {
+        $date_start = $request->Input('date_start');
+        $date_end = $request->Input('date_end');
+        $status = $request->Input('status');
+        if (empty($date_start) && empty($date_end) )
+        {
+            if($request->Input('status') == 2)
+            {
+                $orders = Order::all();
+            }
+            elseif ($request->Input('status') == 1) {
+                $orders = Order::where('status', '=', 'avalible')->get();
+            }
+            else
+            {
+                $orders = Order::where('status', '=', 'not avalible')->get();
+            }
+            return view('auth.order.index')->with('orders', $orders);
+        }
+        elseif ($request->Input('status') == 2) {
+            $orders = Order::where('date', '>=', $date_start)->where('date', '<=', $date_end)->get();
+        }
+        elseif ($request->Input('status') == 1) {
+            $orders = Order::where('date', '>=', $date_start)->where('date', '<=', $date_end)->where('status', '=', 'avalible')->get();
+        }
+        else
+        {
+            $orders = Order::where('date', '>=', $date_start)->where('date', '<=', $date_end)->where('status', '=', 'not avalible')->get();
+        }
+        return view('auth.order.index')->with('orders', $orders);
+       /* dd($status);
+        // dd(strtotime($date_end));
+        $orders = Order::where('date', '>=', $date_start)->where('date', '<=', $date_end)->get();
+        return view('auth.order.index')->with('orders', $orders);*/
+    }
 }

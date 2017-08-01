@@ -16,6 +16,8 @@ use Illuminate\Http\UploadedFile;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+
 Route::resource('/', 'ProductController');
 
 Route::get('admin/products/search', 'AdminProductController@search');
@@ -59,5 +61,9 @@ Route::get('ajax', function(){
 	$products = Cart::content();
 	return view('layouts.ajax')->with('products', $products);
 });
+//admin search order
+Route::get('admin/orders/search', 'AdminOrderController@search');
+
+//admin order
 Route::resource('admin/orders', 'AdminOrderController');
 Route::resource('admin/orderdetails', 'AdminOrderDetailController');

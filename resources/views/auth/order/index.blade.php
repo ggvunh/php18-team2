@@ -7,6 +7,14 @@
             </div>
             <!-- /.box-header -->
            <div class="box-body">
+              <div class="form-inline" style="margin-bottom: 10px;">
+              {!! Form::open(['url' => 'admin/orders/search', 'enctype' => 'multipart/form-data', 'method' => 'GET']) !!}
+              {!! Form::select('status', array('2' => 'All', '0' => 'not avalible', '1' => 'avalible'),['class' => 'form-control'],['class' => 'form-control']) !!}
+              {!! Form::date('date_start', null, ['class' => 'form-control']) !!}
+              {!! Form::date('date_end', null, ['class' => 'form-control']) !!}
+              {!! Form::submit('Search ', ['class' => 'btn btn-primary'])!!} 
+              {!! Form::close() !!}
+             </div>
               <table  id="example2" class="table table-bordered table-hover">
                 <thead>
                 <tr>
