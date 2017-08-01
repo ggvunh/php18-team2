@@ -25,7 +25,17 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo;
+    public function checkAdmin(){
+        if (!Auth::user()->is_admin)
+        {
+          $redirectTo = '/';
+        }
+    else
+         $redirectTo = '/admin';
+    }
+    
+    
 
     /**
      * Create a new controller instance.

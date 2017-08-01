@@ -123,4 +123,9 @@ class AdminProductController extends Controller
         $products = Product::search($keyword)->paginate(6);
         return view('auth.index')->with('products',$products);
     }
+
+    public function redirect()
+    {
+        return redirect('admin/products');
+    }
 }

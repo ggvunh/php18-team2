@@ -66,8 +66,15 @@
 						<div class="shop-menu pull-right">
 							<ul class="nav navbar-nav">
 								<!-- <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li> -->
-								<li><a href="{{ url('/carts')}}"><i class="fa fa-shopping-cart"></i> Giỏ Hàng</a></li>
+								@if ( Cart::count() > 0 )
+								<li><a id="cart" href="{{ url('carts')}}"><i class="fa fa-shopping-cart"></i><span id="count"> Giỏ Hàng({{ Cart::count() }})</span></a></li>
+								@else
+								<li><a id="cart" href="{{ url('carts')}}" ><i class="fa fa-shopping-cart"></i><span id="count"> Giỏ Hàng</span></a></li>
+								@endif
 								@if (Auth::check())
+								<li>
+									<a href="{{ url('carts/manage')}}"> <i class="fa fa-check-circle-o"></i>Quản lý đơn hàng</a>
+								</li>
 								<li>
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     	{{ Auth::user()->name }} <span class="caret"></span>
@@ -86,9 +93,7 @@
                                     </li>
                                 </ul>
 								</li>
-								<li>
-									<a href="{{ url('carts/manage')}}"> <i class="fa fa-check-circle-o"></i>Quản lý giỏ hàng</a>
-								</li>
+								
 								@else
 								<li><a href="{{ url('login') }}"><i class="fa fa-user" aria-hidden="true"></i> Đăng Nhập</a></li>
 								<li><a href="{{ url('register') }}"><i class="fa fa-lock"></i> Đăng Ký</a></li>

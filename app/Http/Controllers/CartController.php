@@ -58,7 +58,7 @@ class CartController extends Controller
 
         $content = Cart::content();
         foreach ($content as $item) {
-            OrderDetail::create(['product_id' => $item->id, 'quantity' => $item->qty, 'price' => $item->subtotal(), 'order_id' => $order->id]);
+            OrderDetail::create(['product_id' => $item->id, 'quantity' => $item->qty, 'price' => $item->price, 'order_id' => $order->id]);
         }
         Cart::destroy();
         return redirect('/');

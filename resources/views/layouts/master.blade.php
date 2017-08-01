@@ -73,7 +73,7 @@
 								@endif
 								@if (Auth::check())
 								<li>
-									<a href="{{ url('carts/manage')}}"> <i class="fa fa-check-circle-o"></i>Quản lý giỏ hàng</a>
+									<a href="{{ url('carts/manage')}}"> <i class="fa fa-check-circle-o"></i>Quản lý đơn hàng</a>
 								</li>
 								<li>
 									<a href="#" ></a>
