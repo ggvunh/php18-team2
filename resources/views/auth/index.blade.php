@@ -29,7 +29,7 @@
                 <tbody>
                 @foreach ($products as $product)
 	                <tr>
-	                  <th>{{ $product->id }}</th>
+	                  <th>{{ $product->id }} &nbsp; &nbsp; &nbsp; <img src="{{ url($product->images) }}" height="30px"></th>
 	                  <th>{{ $product->name}}</th>
 	                  <th>
 	                  <form>

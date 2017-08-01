@@ -42,7 +42,7 @@
                   <td>{{ $order ->name_receiver}}</td>
                   <td>{{ App\User::find($order->user_id)->name}}</td>
                   <td><a href="{{ url('admin/orders/'. $order->id . '/edit')}}"><span class="glyphicon glyphicon-pencil"></span></a></td>
-                  <td><a href="{{ url('admin/orderdetails') }}">Xem chi tiết</a></td>
+                  <td><a href="{{ url('admin/' . $order->id .'/orderdetails') }}">Xem chi tiết</a></td>
 
                 </tr>
                 @endforeach
