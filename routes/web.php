@@ -63,4 +63,4 @@ Route::get('ajax', function(){
 	return view('layouts.ajax')->with('products', $products);
 });
 Route::resource('admin/orders', 'AdminOrderController');
-Route::resource('admin/orderdetails', 'AdminOrderDetailController');
+Route::resource('admin/{id}/orderdetails', 'AdminOrderDetailController');
