@@ -51,6 +51,9 @@ Route::get('carts/{id}/add', 'CartController@add');
 Route::get('carts/delete/{rowId}', 'CartController@delete');
 Route::get('carts/checkout', 'CartController@checkout');
 Route::post('/carts', 'CartController@store_order');
+Route::get('carts/manage' , 'CartController@manage');
+Route::get('carts/manage/{id}/cancel' , 'CartController@cancel');
+Route::get('carts/manage/{id}/detail' , 'CartController@detail');
 //parameters
 Route::resource('admin/parameters', 'AdminParameterController');
 Route::get('admin/parameters/delete/{parameter}', 'AdminParameterController@delete');
