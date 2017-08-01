@@ -11,6 +11,7 @@ use App\OrderDetail;
 use DateTime;
 use App\Product;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Http\UploadedFile;
 
 class CartController extends Controller
 {
@@ -62,5 +63,26 @@ class CartController extends Controller
         Cart::destroy();
         return redirect('/');
         
+    }
+
+    public function manage()
+    {
+        // dd(auth::user()->id);
+        $orders = Order::where('user_id', '=', auth::user()->id)->get();
+        // dd($orders);
+        return view('layouts.cart.manage')->with('orders', $orders);
+    }
+
+    public function cancel($id)
+    {
+        $order = Order::find($id);
+        $order->update(['shipping_status' => 'cancel', 'status' => 'not avalible']);
+        return redirect('carts/manage');
+    }
+
+    public function detail($id)
+    {
+        $items = OrderDetail::where('order_id', '=', $id)->get();
+        return view('layouts.cart.manage-detail')->with('items', $items);
     }
 }

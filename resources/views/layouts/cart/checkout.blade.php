@@ -51,7 +51,7 @@
 				</div>
 			</div>
 		</div><!--/header_top-->
-		
+
 		<div class="header-middle"><!--header-middle-->
 			<div class="container">
 				<div class="row">
@@ -66,22 +66,14 @@
 						<div class="shop-menu pull-right">
 							<ul class="nav navbar-nav">
 								<!-- <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li> -->
-								@if ( Cart::count() > 0 )
-								<li><a id="cart" href="{{ url('carts')}}"><i class="fa fa-shopping-cart"></i><span id="count"> Giỏ Hàng({{ Cart::count() }})</span></a></li>
-								@else
-								<li><a id="cart" href="{{ url('carts')}}" ><i class="fa fa-shopping-cart"></i><span id="count"> Giỏ Hàng</span></a></li>
-								@endif
+								<li><a href="{{ url('/carts')}}"><i class="fa fa-shopping-cart"></i> Giỏ Hàng</a></li>
 								@if (Auth::check())
 								<li>
-									<a href="{{ url('carts/manage')}}"> <i class="fa fa-check-circle-o"></i>Quản lý giỏ hàng</a>
-								</li>
-								<li>
-									<a href="#" ></a>
-									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-user"></i>
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     	{{ Auth::user()->name }} <span class="caret"></span>
                                 	</a>
 
-                                	<ul class="dropdown-menu" role="menu">
+                                <ul class="dropdown-menu" role="menu">
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
@@ -92,9 +84,11 @@
                                             {{ csrf_field() }}
                                         </form>
                                     </li>
-                                	</ul>
+                                </ul>
 								</li>
-								
+								<li>
+									<a href="{{ url('carts/manage')}}"> <i class="fa fa-check-circle-o"></i>Quản lý giỏ hàng</a>
+								</li>
 								@else
 								<li><a href="{{ url('login') }}"><i class="fa fa-user" aria-hidden="true"></i> Đăng Nhập</a></li>
 								<li><a href="{{ url('register') }}"><i class="fa fa-lock"></i> Đăng Ký</a></li>
@@ -105,7 +99,7 @@
 				</div>
 			</div>
 		</div><!--/header-middle-->
-	
+
 		<div class="header-bottom"><!--header-bottom-->
 			<div class="container">
 				<div class="row">
@@ -154,142 +148,43 @@
 			</div>
 		</div><!--/header-bottom-->
 	</header><!--/header-->
-	<section>
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-3">
-					<div class="left-sidebar">
-						<h2>Danh mục Sản Phẩm</h2>
-						<div class="panel-group category-products" id="accordian"><!--category-productsr-->
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title">
-										<a data-toggle="collapse" data-parent="#accordian" href="#sportswear">
-											<span class="badge pull-right"><i class="fa fa-plus"></i></span>
-											Laptop
-										</a>
-									</h4>
-								</div>
-								<div id="sportswear" class="panel-collapse collapse">
-									<div class="panel-body">
-										<ul>
-											<li><a href="#">Del</a></li>
-											<li><a href="#">HP </a></li>
-											<li><a href="#">Asus </a></li>
-											<li><a href="#">Acer</a></li>
-											<li><a href="#">Sony </a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title">
-										<a data-toggle="collapse" data-parent="#accordian" href="#mens">
-											<span class="badge pull-right"><i class="fa fa-plus"></i></span>
-											Điện Thoại
-										</a>
-									</h4>
-								</div>
-								<div id="mens" class="panel-collapse collapse">
-									<div class="panel-body">
-										<ul>
-											<li><a href="#">Apple (Iphone)</a></li>
-											<li><a href="#">Samsung</a></li>
-											<li><a href="#">LG</a></li>
-											<li><a href="#">Sony</a></li>
-											<li><a href="#">Nokia</a></li>
-											<li><a href="#">HTC</a></li>
-											<li><a href="#">OPPO</a></li>
-											<li><a href="#">Xiaomi</a></li>
-											<li><a href="#">MEIZU</a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-							
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title">
-										<a data-toggle="collapse" data-parent="#accordian" href="#womens">
-											<span class="badge pull-right"><i class="fa fa-plus"></i></span>
-											Apple iStore
-										</a>
-									</h4>
-								</div>
-								<div id="womens" class="panel-collapse collapse">
-									<div class="panel-body">
-										<ul>
-											<li><a href="#">Macbook</a></li>
-											<li><a href="#">iPhone</a></li>
-											<li><a href="#">iPad</a></li>
-											<li><a href="#">iMac</a></li>
-											<li><a href="#">iPod</a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Máy Tính Bảng</a></h4>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Desktop</a></h4>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Phụ Kiện</a></h4>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">TB Văn Phòng</a></h4>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Khuyến Mãi</a></h4>
-								</div>
-							</div>
-							
-						</div><!--/category-products-->
-					
-						<div class="brands_products"><!--brands_products-->
-							<h2>Thương Hiệu</h2>
-							<div class="brands-name">
-								<ul class="nav nav-pills nav-stacked">
-									<li><a href="#"> <span class="pull-right">(50)</span>Apple</a></li>
-									<li><a href="#"> <span class="pull-right">(56)</span>Dell</a></li>
-									<li><a href="#"> <span class="pull-right">(27)</span>Asus</a></li>
-									<li><a href="#"> <span class="pull-right">(32)</span>HP</a></li>
-									<li><a href="#"> <span class="pull-right">(5)</span>Lenovo</a></li>
-									<li><a href="#"> <span class="pull-right">(9)</span>Acer</a></li>
-									<li><a href="#"> <span class="pull-right">(4)</span>Sony</a></li>
-								</ul>
-							</div>
-						</div><!--/brands_products-->
-						
-						
-						
-						<div class="shipping text-center"><!--shipping-->
-							<img src="{{ asset('images/home/123.jpg') }}" alt="" />
-						</div><!--/shipping-->
-					
-					</div>
-				</div>
-				<div class="col-sm-9 padding-right">
-					@yield('content')
-				</div>
-				
-					
-				</div>
-			</div>
-		</div>
-	</section>
-	
+
+	<section id="cart_items">
+        <div class="container">
+            <div class="breadcrumbs" >
+                <ol class="breadcrumb" style="margin-bottom: 40px !important">
+                  <li><a href="#">Home</a></li>
+                  <li class="active">Check out</li>
+                </ol>
+            </div><!--/breadcrums-->
+
+            <div class="shopper-informations" >
+                <div class="row" style=" margin-bottom: 15px; ">
+                    <div class="col-sm-6">
+                        <div class="shopper-info">
+                            <p>Thông tin đặt hàng: </p>
+                            <form class="form-horizontal" action="{{ url('carts')}}" method="POST">
+                             {{ csrf_field() }}
+                                <input type="text" id="name_receiver" name="name_receiver" placeholder="Tên người nhận hàng">
+                                <input type="address" id="address_order" name="address_order" placeholder="địa chỉ">
+                                <input type="tel" id="phone" name="phone" placeholder="số điện thoại">
+                                <button type="button" class="btn btn-primary"> <a href="{{ url('carts') }}" style="color: #fff">Hủy</a> </button>
+                                <button type="submit" class="btn btn-primary"> Đặt hàng </button>
+                            </form>
+                            
+                        </div>
+                    </div>            
+                </div>
+            </div>
+        
+        </div>
+    </section> <!--/#cart_items-->
+
+
+
+
+
+
 	<footer id="footer"><!--Footer-->
 		
 		<div class="footer-widget">
@@ -377,5 +272,26 @@
 	<script src="{{ asset('js/price-range.js') }}"></script>
     <script src="{{ asset('js/jquery.prettyPhoto.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
+    <script type="text/javascript">
+    function ud_find_text(self) {
+	    var children = self.parentNode.getElementsByTagName('input');
+	    for (var i = 0; i < children.length; i++) {
+	        if (children[i].getAttribute('type') == 'text') {
+	            return children[i];
+	        }
+	    }
+	}
+
+    function ud_inc(self) {
+    	var text = ud_find_text(self);
+    	text.value++;
+	}
+
+	function ud_dec(self) {
+	    var text = ud_find_text(self);
+	    if (text.value > 0) text.value--;
+	}
+
+    </script>
 </body>
 </html>

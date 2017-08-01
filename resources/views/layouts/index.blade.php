@@ -12,7 +12,7 @@
 				<div class="single-products">
 						<div class="productinfo text-center">
 							<img src="{{ $product->images }}" alt="{{ $product->name}}" title="{{ $product->name}}" style="height: 250px" />
-							<h2><?php echo number_format($product->price, 0, ',', ',').'đ' ?></h2>
+							<h2>{{number_format($product->price, 0, ',', ',').'đ' }} </h2>
 							<p>{{ $product->name }}</p>
 							<a href="{{ url('cart/' . $product->id)}}" class="btn btn-default add-to-cart" onclick="addCart({{$product->id}})"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
 						</div>
