@@ -66,10 +66,14 @@
 						<div class="shop-menu pull-right">
 							<ul class="nav navbar-nav">
 								<!-- <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li> -->
-								<li><a href="{{ url('carts') }}"><i class="fa fa-shopping-cart"></i> Giỏ Hàng</a></li>
+								@if ( Cart::count() > 0 )
+								<li><a id="cart" href="{{ url('carts')}}"><i class="fa fa-shopping-cart"></i><span id="count"> Giỏ Hàng({{ Cart::count() }})</span></a></li>
+								@else
+								<li><a id="cart" href="{{ url('carts')}}" ><i class="fa fa-shopping-cart"></i><span id="count"> Giỏ Hàng</span></a></li>
+								@endif
 								@if (Auth::check())
 								<li>
-									<a href="{{ url('carts/manage')}}"> <i class="fa fa-check-circle-o"></i>Quản lý giỏ hàng</a>
+									<a href="{{ url('carts/manage')}}"> <i class="fa fa-check-circle-o"></i>Quản lý đơn hàng</a>
 								</li>
 								<li>
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -171,24 +175,29 @@
                 <tr>
                   <th>ID</th>
                   <th>Số lượng</th>
-                  <th>Giá Tiền</th>
+                  <th>Đơn Giá</th>
+                  <th>Thành Tiền</th>
                   <th>Mã Đơn Hàng</th>
                   <th>Tên Sản Phẩm</th>
         
                 </tr>
                 </thead>
                 <tbody>
+                	<?php  $total = 0; ?>
 	                @foreach ($items as $item)
 		             <tr>
 		                  <td>{{ $item ->id}}</td>
 		                  <td>{{ $item ->quantity}}</td>
-		                  <td>{{ $item ->price . ' VNĐ'}}</td>
+		                  <td>{{ number_format($item ->price, '2', ',', '.') . ' VNĐ'}}</td>
+		                  <td>{{ number_format($item ->quantity * $item ->price, '2', ',', '.') . ' VNĐ'}}</td>
 		                  <td>{{ $item ->order_id}}</td>
 		                  <td>{{ App\Product::find($item ->product_id)->name }}</td>
 	                </tr>
+	                <?php $total+=$item->quantity * $item->price ?>
 	                @endforeach
-                </tbody>            
+                </tbody>           
              </table>
+             <p style="float: right;"><b>Tổng Tiền: {{ number_format($total, '2', ',', '.') . ' VNĐ' }}</b></p> 
             </div>
             <!-- /.box-body -->
           </div>

@@ -33,9 +33,7 @@ Route::get('/search', 'ProductController@search');
 ///admin
 Route::resource('/admin/products', 'AdminProductController');
 
-Route::get('/admin', function(){
-	return redirect('/admin/products');
-});
+Route::get('/admin', 'AdminProductController@redirect')->middleware('admin');
 
 Route::get('admin/products/delete/{product}', 'AdminProductController@delete');
 ///admin category
