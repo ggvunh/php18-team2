@@ -122,17 +122,23 @@
 						<div class="mainmenu pull-left">
 							<ul class="nav navbar-nav collapse navbar-collapse">
 								<li><a href="{{url('products/laptop')}}" class="active">Laptop</a></li>
-								<li class="dropdown"><a href="{{url('products/dienthoai')}}">Điện Thoại<i class="fa fa-angle-down"></i></a>
-
-								</li> 
-								<li class="dropdown"><a href="{{url('products/maytinhbang')}}">Máy Tính Bảng<i class="fa fa-angle-down"></i></a>
+								<li class="dropdown"><a href="#">Điện Thoại<i class="fa fa-angle-down"></i></a>
+                                    <ul role="menu" class="sub-menu">
+                                        <li><a href="shop.html">Điện thoại</a></li>
+										<li><a href="product-details.html">Product Details</a></li> 
+										<li><a href="checkout.html">Checkout</a></li> 
+										<li><a href="cart.html">Cart</a></li> 
+										<li><a href="login.html">Login</a></li> 
+                                    </ul>
+                                </li> 
+								<li class="dropdown"><a href="#">Máy Tính Bảng<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
                                         <li><a href="blog.html">Blog List</a></li>
 										<li><a href="blog-single.html">Blog Single</a></li>
                                     </ul>
                                 </li> 
 								
-								<li><a href="#">Liên Hệ</a></li>
+								<li><a href="contact-us.html">Liên Hệ</a></li>
 							</ul>
 						</div>
 					</div>
@@ -168,9 +174,9 @@
 								<div id="sportswear" class="panel-collapse collapse">
 									<div class="panel-body">
 										<ul>
-											<li><a href="{{url('products/dell')}}">Del</a></li>
-											<li><a href="{{url('products/hp')}}">HP </a></li>
-											<li><a href="{{url('products/asus')}}">Asus </a></li>
+											<li><a href="#">Del</a></li>
+											<li><a href="#">HP </a></li>
+											<li><a href="#">Asus </a></li>
 											<li><a href="#">Acer</a></li>
 											<li><a href="#">Sony </a></li>
 										</ul>
@@ -189,9 +195,9 @@
 								<div id="mens" class="panel-collapse collapse">
 									<div class="panel-body">
 										<ul>
-											<li><a href="{{url('products/apple')}}">Apple (Iphone)</a></li>
-											<li><a href="{{url('products/samsung')}}">Samsung</a></li>
-											<li><a href="{{url('products/lg')}}">LG</a></li>
+											<li><a href="#">Apple (Iphone)</a></li>
+											<li><a href="#">Samsung</a></li>
+											<li><a href="#">LG</a></li>
 											<li><a href="#">Sony</a></li>
 											<li><a href="#">Nokia</a></li>
 											<li><a href="#">HTC</a></li>

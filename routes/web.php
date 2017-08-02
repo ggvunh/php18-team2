@@ -20,14 +20,6 @@ use Illuminate\Http\UploadedFile;
 
 Route::resource('/', 'ProductController');
 Route::get('products/laptop', 'ProductController@listlaptop');
-Route::get('products/dell', 'ProductController@listlaptopdell');
-Route::get('products/hp', 'ProductController@listlaptophp');
-Route::get('products/asus', 'ProductController@listlaptopasus');
-Route::get('products/dienthoai', 'ProductController@listdienthoai');
-Route::get('products/apple', 'ProductController@listapple');
-Route::get('products/samsung', 'ProductController@listdtsamsung');
-Route::get('products/lg', 'ProductController@listdtlg');
-Route::get('products/maytinhbang', 'ProductController@listmaytinhbang');
 
 Route::get('admin/products/search', 'AdminProductController@search');
 Auth::routes();
