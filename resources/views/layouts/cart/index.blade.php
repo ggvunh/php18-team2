@@ -76,7 +76,6 @@
 									<a href="{{ url('carts/manage')}}"> <i class="fa fa-check-circle-o"></i>Quản lý đơn hàng</a>
 								</li>
 								<li>
-								<li>
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     	{{ Auth::user()->name }} <span class="caret"></span>
                                 	</a>
@@ -195,17 +194,18 @@
 							</td>
 							<td class="cart_quantity">
 								<div class="cart_quantity_button">
+								<?php $rowId = (string)$item->rowId ?>
 								<form>
-  									<input type="button" value=" - " onclick="ud_dec(this)">
-  									<input type="text" name="quantity" value="{{$item->qty}}" size="2" style="text-align: center;">
-  									<input type="button" value=" + " onclick="ud_inc(this)" >
+  									<input type="button" value=" - " id="dow" onclick="ud_dec(this); upqty($rowId);">
+  									<input type="text" name="quantity" id="quantity" value="{{$item->qty}}" size="2" style="text-align: center;">
+  									<input type="button" value=" + " id="up" onclick="ud_inc(this)" >
 								</form>
 							</td>
 							<td class="cart_total">
 								<p class="cart_total_price" style="margin-top: 20px">{{ number_format($item->subtotal, 2, ',',',') . ' VNĐ' }}</p>
 							</td>
 							<td class="cart_delete">
-								<a class="cart_quantity_delete" href="{{ url('carts/delete/' . $item->rowId) }}"><i class="fa fa-times"></i></a>
+								<a class="cart_quantity_delete delete" href="{{ url('carts/delete/' . $item->rowId) }}"><i class="fa fa-times"></i></a>
 							</td>
 						</tr>
 					@endforeach
@@ -346,6 +346,15 @@
 	    if (text.value > 0) text.value--;
 	}
 
+	function upqty(rowId)
+	{
+		
+		alert("abc");
+	}
+
+	$( ".delete" ).click(function() {
+	  alert( "xóa thành công." );
+	});
     </script>
 </body>
 </html>
