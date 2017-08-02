@@ -100,4 +100,75 @@ class ProductController extends Controller
         $products = Product::search($keyword)->paginate(6);
         return view('layouts.index')->with('products',$products)->withSuccess('Cat has been deleted.');
     }
+
+    //list product in menu
+    public function listlaptop()
+    { 
+        $products = Product::where('category_id', '=', 2)->paginate(6); 
+        $categories = Category::all();
+        $brands = Brand::all();
+        return view('layouts.index')->with(['products' => $products, 'catgories' => $categories, 'brands' => $brands]);
+    }
+    public function listlaptopdell()
+    { 
+        $products = Product::where('category_id', '=', 2)->paginate(6);
+        $products = Product::where('brand_id', '=', 12)->paginate(6);
+        $categories = Category::all();
+        $brands = Brand::all();
+        return view('layouts.index')->with(['products' => $products, 'catgories' => $categories, 'brands' => $brands]);
+    }
+    public function listlaptophp()
+    { 
+        $products = Product::where('category_id', '=', 2)->paginate(6);
+        $products = Product::where('brand_id', '=', 13)->paginate(6);
+        $categories = Category::all();
+        $brands = Brand::all();
+        return view('layouts.index')->with(['products' => $products, 'catgories' => $categories, 'brands' => $brands]);
+    }
+    public function listlaptopasus()
+    { 
+        $products = Product::where('category_id', '=', 2)->paginate(6);
+        $products = Product::where('brand_id', '=', 14)->paginate(6);
+        $categories = Category::all();
+        $brands = Brand::all();
+        return view('layouts.index')->with(['products' => $products, 'catgories' => $categories, 'brands' => $brands]);
+    }
+    public function listdienthoai()
+    {
+        $products = Product::where('category_id', '=', 1)->paginate(6);
+        $categories = Category::all();
+        $brands = Brand::all();
+        return view('layouts.index')->with(['products' => $products, 'catgories' => $categories, 'brands' => $brands]);
+    }
+    public function listapple()
+    {
+        $products = Product::where('category_id', '=', 1)->paginate(6);
+        $products = Product::where('brand_id', '=', 1)->paginate(6);
+        $categories = Category::all();
+        $brands = Brand::all();
+        return view('layouts.index')->with(['products' => $products, 'catgories' => $categories, 'brands' => $brands]);
+    }
+    public function listdtsamsung()
+    {
+        $products = Product::where('category_id', '=', 1)->paginate(6);
+        $products = Product::where('brand_id', '=', 2)->paginate(6);
+        $categories = Category::all();
+        $brands = Brand::all();
+        return view('layouts.index')->with(['products' => $products, 'catgories' => $categories, 'brands' => $brands]);
+    }
+    public function listdtlg()
+    {
+        $products = Product::where('category_id', '=', 1)->paginate(6);
+        $products = Product::where('brand_id', '=', 5)->paginate(6);
+        $categories = Category::all();
+        $brands = Brand::all();
+        return view('layouts.index')->with(['products' => $products, 'catgories' => $categories, 'brands' => $brands]);
+    }
+    public function listmaytinhbang()
+    {
+        $products = Product::where('category_id', '=', 3)->paginate(6);
+        $categories = Category::all();
+        $brands = Brand::all();
+        return view('layouts.index')->with(['products' => $products, 'catgories' => $categories, 'brands' => $brands]);
+    }
 }
