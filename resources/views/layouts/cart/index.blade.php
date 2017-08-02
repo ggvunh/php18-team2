@@ -196,9 +196,9 @@
 								<div class="cart_quantity_button">
 								<?php $rowId = (string)$item->rowId ?>
 								<form>
-  									<input type="button" value=" - " id="dow" onclick="ud_dec(this); upqty($rowId);">
-  									<input type="text" name="quantity" id="quantity" value="{{$item->qty}}" size="2" style="text-align: center;">
-  									<input type="button" value=" + " id="up" onclick="ud_inc(this)" >
+  									<input type="button" value=" - " onclick="ud_dec(this); down('{{$item->rowId}}')">
+  									<input type="text" name="quantity" value="{{$item->qty}}" size="2" style="text-align: center;">
+  									<input type="button" value=" + " onclick="ud_inc(this)" >
 								</form>
 							</td>
 							<td class="cart_total">
@@ -345,6 +345,11 @@
 	    var text = ud_find_text(self);
 	    if (text.value > 0) text.value--;
 	}
+	 function down(rowId)
+	 {
+	 	console.log(rowId);
+
+	 }
 
 	function upqty(rowId)
 	{

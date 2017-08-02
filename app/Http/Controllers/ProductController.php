@@ -100,4 +100,12 @@ class ProductController extends Controller
         $products = Product::search($keyword)->paginate(6);
         return view('layouts.index')->with('products',$products)->withSuccess('Cat has been deleted.');
     }
+
+    public function listlaptop()
+    {
+        $products = Product::where('category_id', '=', 2)->paginate(6);;
+        $categories = Category::all();
+        $brands = Brand::all();
+        return view('layouts.index')->with(['products' => $products, 'catgories' => $categories, 'brands' => $brands]);
+    }
 }
