@@ -1,5 +1,4 @@
 @extends('layouts.master')
-
 @section('content')
 	<div class="features_items">
 		<h2 class="title text-center">SẢN PHẨM NỔI BẬT</h2>
@@ -14,14 +13,14 @@
 							<img src="{{ $product->images }}" alt="{{ $product->name}}" title="{{ $product->name}}" style="height: 250px" />
 							<h2>{{number_format($product->price, 0, ',', ',').'đ' }} </h2>
 							<p>{{ $product->name }}</p>
-							<a href="{{ url('cart/' . $product->id)}}" class="btn btn-default add-to-cart" onclick="addCart({{$product->id}})"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
+							<a href="javascript:void(0)"  class="btn btn-default add-to-cart add_product" onclick="addCart({{$product->id}})"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
 						</div>
 						<div class="product-overlay">
 							<div class="overlay-content">
 
 								<h2><?php echo number_format($product->price, 0, ',', ',').'đ' ?></h2>
 								<p>{{ $product->name }}</p>
-								<button class="btn btn-default add-to-cart" onclick="addCart({{$product->id}})"><i class="fa fa-shopping-cart"></i>Thêm Vào Giỏ Hàng </button>
+								<button class="btn btn-default add-to-cart add_product" onclick="addCart({{$product->id}})"><i class="fa fa-shopping-cart"></i>Thêm Vào Giỏ Hàng </button>
 							</div>
 						</div>
 						
@@ -41,7 +40,13 @@
     top: 1030px !important;">
 		{!! $products->render() !!}
 	</div>
-	<script type="text/javascript">
+	<script src="{{ asset('js/jquery.js') }}"></script>
+	<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+	<script src="{{ asset('js/jquery.scrollUp.min.js') }}"></script>
+	<script src="{{ asset('js/price-range.js') }}"></script>
+    <script src="{{ asset('js/jquery.prettyPhoto.js') }}"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
+    <script type="text/javascript">
 		function addCart(id)
         {
             var root = '{{url('/carts')}}';
@@ -52,6 +57,10 @@
               $('#count').replaceWith('<span id="count"> Giỏ Hàng(' + data.count +')</span> ');
             });
         }
+
+        $( ".add_product" ).click(function() {
+		  alert( "Đã thêm sản phẩm vào giỏ hàng!" );
+		});
 	</script>
 @stop
 <!-- <span id="count"> Giỏ Hàng({{ Cart::count() }})</span> -->
