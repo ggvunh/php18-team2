@@ -19,6 +19,7 @@ use Illuminate\Http\UploadedFile;
 
 
 Route::resource('/', 'ProductController');
+Route::resource('/laptop', 'ProductController@listlaptop');
 
 Route::get('admin/products/search', 'AdminProductController@search');
 Auth::routes();
