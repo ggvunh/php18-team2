@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Product;
 use App\Category;
 use App\Brand;
+use App\User;
+use App\Order;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
@@ -18,8 +20,12 @@ class AdminController extends Controller
      */
     public function index()
     {
-       //
+       $users = User::where('is_admin', '!=', 1)->get();
+       $products = Product::all();
+       $orders = Order::all();
+       return view('auth.index')->with(['users' => $users, 'products' => $products, 'orders' => $orders]);
     }
+
 
     /**
      * Show the form for creating a new resource.

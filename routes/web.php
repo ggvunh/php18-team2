@@ -39,10 +39,8 @@ Route::get('/search', 'ProductController@search');
 
 
 
-///admin
-Route::resource('/admin/products', 'AdminProductController');
 
-Route::get('/admin', 'AdminProductController@redirect')->middleware('admin');
+// Route::get('/admin', 'AdminProductController@redirect')->middleware('admin');
 
 Route::get('admin/products/delete/{product}', 'AdminProductController@delete');
 ///admin category
@@ -80,4 +78,8 @@ Route::resource('admin/orderdetails', 'AdminOrderDetailController');
 Route::resource('admin/{id}/orderdetails', 'AdminOrderDetailController');
 //admin user
 Route::resource('admin/users', 'AdminUserController');
+///admin product
+Route::resource('/admin/products', 'AdminProductController');
+//admin
+Route::resource('admin', 'AdminController');
 

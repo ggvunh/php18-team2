@@ -19,7 +19,7 @@ class AdminProductController extends Controller
     public function index()
     {
         $products = Product::all();
-        return view('auth.index')->with('products', $products);
+        return view('auth.product.index')->with('products', $products);
     }
 
     /**
@@ -126,8 +126,8 @@ class AdminProductController extends Controller
         return view('auth.index')->with('products',$products);
     }
 
-    public function redirect()
+   /* public function redirect()
     {
-        return redirect('admin/products');
-    }
+         return view('auth.product.index');
+    }*/
 }
