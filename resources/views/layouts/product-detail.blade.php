@@ -20,7 +20,7 @@
 				<input type="text" value="1"/>
 				
 			</span>
-			<button type="button" class="btn btn-fefault cart" style="display: block; margin-left: 0px !important">
+			<button type="button" class="btn btn-fefault cart add_product" style="display: block; margin-left: 0px !important" onclick="addCart({{$product->id}})">
 					<i class="fa fa-shopping-cart"></i>
 					Add to cart
 				</button>

@@ -85,4 +85,23 @@ class CartController extends Controller
         $items = OrderDetail::where('order_id', '=', $id)->get();
         return view('layouts.cart.manage-detail')->with('items', $items);
     }
+
+    public function down_count($rowId)
+    {
+        /*$product = Product::find($id);
+        Cart::add($product->id, $product->name, 1, $product->cost, ['image' => 'this is link image']);
+        $count = Cart::count();
+        return response(['count' => $count], 200);*/
+        $item = Cart::get($rowId);
+        Cart::update($rowId, $item->qty - 1);
+        return response(['qty' => $item->qty, 'subtotal' => $item->subtotal], 200);
+        // Cart::update($rowId, )
+    }
+
+    public function up_count($rowId)
+    {
+        $item = Cart::get($rowId);
+        Cart::update($rowId, $item->qty + 1);
+        return response(['qty' => $item->qty, 'subtotal' => $item->subtotal], 200);
+    }
 }

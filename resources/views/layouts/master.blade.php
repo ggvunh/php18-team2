@@ -25,6 +25,13 @@
 </head><!--/head-->
 
 <body>
+<div class="btn btn-default"  style="position: fixed; top: 40px; right: 5px; background-color: #FE980F">
+	@if ( Cart::count() > 0 )
+		<a id="cart" href="{{ url('carts')}}"><i class="fa fa-shopping-cart"></i><span id="count"> ({{ Cart::count() }})</span></a>
+	@else
+		<a id="cart" href="{{ url('carts')}}" ><i class="fa fa-shopping-cart"></i><span id="count"></span></a>
+	@endif
+</div>
 	<header id="header"><!--header-->
 		<div class="header_top"><!--header_top-->
 			<div class="container">
@@ -66,11 +73,11 @@
 						<div class="shop-menu pull-right">
 							<ul class="nav navbar-nav">
 								<!-- <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li> -->
-								@if ( Cart::count() > 0 )
+								<!-- @if ( Cart::count() > 0 )
 								<li><a id="cart" href="{{ url('carts')}}"><i class="fa fa-shopping-cart"></i><span id="count"> Giỏ Hàng({{ Cart::count() }})</span></a></li>
 								@else
 								<li><a id="cart" href="{{ url('carts')}}" ><i class="fa fa-shopping-cart"></i><span id="count"> Giỏ Hàng</span></a></li>
-								@endif
+								@endif -->
 								@if (Auth::check())
 								<li>
 									<a href="{{ url('carts/manage')}}"> <i class="fa fa-check-circle-o"></i>Quản lý đơn hàng</a>
@@ -378,5 +385,21 @@
 	<script src="{{ asset('js/price-range.js') }}"></script>
     <script src="{{ asset('js/jquery.prettyPhoto.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
+    <script type="text/javascript">
+		function addCart(id)
+        {
+            var root = '{{url('/carts')}}';
+            $.get(root + '/' + id + '/' + 'add', function(data, status){
+
+                console.log(data);
+            //   $('#count').replaceWith('<span id="count">' + data.count +'</span> ');
+              $('#count').replaceWith('<span id="count">(' + data.count +')</span> ');
+            });
+        }
+
+        $( ".add_product" ).click(function() {
+		  alert( "Đã thêm sản phẩm vào giỏ hàng!" );
+		});
+	</script>
 </body>
 </html>

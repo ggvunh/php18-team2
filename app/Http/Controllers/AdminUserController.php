@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateUserRequest;
 use Illuminate\Http\Request;
-use App\Product;
-use App\Category;
-use App\Brand;
-use Illuminate\Support\Facades\Input;
+use App\User;
 
-class ProductController extends Controller
+
+class AdminUserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,10 +16,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::where('active', '=', 1)->paginate(6);
-        $categories = Category::all();
-        $brands = Brand::all();
-        return view('layouts.index')->with(['products' => $products, 'catgories' => $categories, 'brands' => $brands]);    }
+        $users = User::where('is_admin', '!=', 1)->get();
+        return view('auth.user.index')->with('users', $users);
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -29,7 +27,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('auth.user.create');
     }
 
     /**
@@ -38,9 +36,12 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateUserRequest $request)
     {
-        //
+        $input = $request->all();
+        $user = User::create($input);
+        return redirect('admin/products');
+
     }
 
     /**
@@ -62,7 +63,7 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        dd(123);
     }
 
     /**
@@ -86,26 +87,5 @@ class ProductController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function product_detail(Product $product)
-    {
-        return view('layouts.product-detail')->with('product', $product);
-    }
-
-    public function search()
-    {
-        $keyword = Input::get('keyword', ' ');
-        $category = Input::get('category', '');
-        $products = Product::search($keyword)->where('active', '=', 1)->paginate(6);
-        return view('layouts.index')->with('products',$products)->withSuccess('Cat has been deleted.');
-    }
-
-    public function listlaptop()
-    {
-        $products = Product::where('category_id', '=', 2)->paginate(6);;
-        $categories = Category::all();
-        $brands = Brand::all();
-        return view('layouts.index')->with(['products' => $products, 'catgories' => $categories, 'brands' => $brands]);
     }
 }
