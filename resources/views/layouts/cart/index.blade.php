@@ -25,6 +25,13 @@
 </head><!--/head-->
 
 <body>
+	<div class="btn btn-default"  style="position: fixed; top: 40px; right: 5px; background-color: #FE980F">
+	@if ( Cart::count() > 0 )
+		<a id="cart" href="{{ url('carts')}}"><i class="fa fa-shopping-cart"></i><span id="count"> ({{ Cart::count() }})</span></a>
+	@else
+		<a id="cart" href="{{ url('carts')}}" ><i class="fa fa-shopping-cart"></i><span id="count"></span></a>
+	@endif
+	</div>
 	<header id="header"><!--header-->
 		<div class="header_top"><!--header_top-->
 			<div class="container">
@@ -66,11 +73,11 @@
 						<div class="shop-menu pull-right">
 							<ul class="nav navbar-nav">
 								<!-- <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li> -->
-								@if ( Cart::count() > 0 )
+								<!-- @if ( Cart::count() > 0 )
 								<li><a id="cart" href="{{ url('carts')}}"><i class="fa fa-shopping-cart"></i><span id="count"> Giỏ Hàng({{ Cart::count() }})</span></a></li>
 								@else
 								<li><a id="cart" href="{{ url('carts')}}" ><i class="fa fa-shopping-cart"></i><span id="count"> Giỏ Hàng</span></a></li>
-								@endif
+								@endif -->
 								@if (Auth::check())
 								<li>
 									<a href="{{ url('carts/manage')}}"> <i class="fa fa-check-circle-o"></i>Quản lý đơn hàng</a>
@@ -196,13 +203,13 @@
 								<div class="cart_quantity_button">
 								<?php $rowId = (string)$item->rowId ?>
 								<form>
-  									<input type="button" value=" - " onclick="ud_dec(this); down('{{$item->rowId}}')">
-  									<input type="text" name="quantity" value="{{$item->qty}}" size="2" style="text-align: center;">
-  									<input type="button" value=" + " onclick="ud_inc(this)" >
+  									<input type="button" value=" - " onclick="down('{{$item->rowId}}')">
+  									<input type="text" id="{{$item->rowId}}" name="quantity" value="{{$item->qty}}" size="2" style="text-align: center;">
+  									<input type="button" value=" + " onclick="up('{{$item->rowId}}')" >
 								</form>
 							</td>
 							<td class="cart_total">
-								<p class="cart_total_price" style="margin-top: 20px">{{ number_format($item->subtotal, 2, ',',',') . ' VNĐ' }}</p>
+								<p class="cart_total_price" style="margin-top: 20px"><span id="sub{{$item->rowId}}">{{ number_format($item->subtotal, 2, ',',',') . ' VNĐ' }}</span></p>
 							</td>
 							<td class="cart_delete">
 								<a class="cart_quantity_delete delete" href="{{ url('carts/delete/' . $item->rowId) }}"><i class="fa fa-times"></i></a>
@@ -214,7 +221,7 @@
 								<p class="cart_total_price" style="color: #666; font-weight: bold;"> Tổng Cộng: </p>
 							</td>
 							<td>
-								<p class="cart_total_price">{{ Cart::total() . ' VNĐ' }}</p>
+								<p id="total" class="cart_total_price">{{ Cart::total() . ' VNĐ' }}</p>
 							</td>
 						</tr>
 
@@ -345,16 +352,37 @@
 	    var text = ud_find_text(self);
 	    if (text.value > 0) text.value--;
 	}
+
+	function addCart(id)
+        {
+            var root = '{{url('/carts')}}';
+            $.get(root + '/' + id + '/' + 'add', function(data, status){
+
+                console.log(data);
+            //   $('#count').replaceWith('<span id="count">' + data.count +'</span> ');
+              $('#count').replaceWith('<span id="count">' + data.count +'</span> ');
+            });
+        }
+
 	 function down(rowId)
 	 {
-	 	console.log(rowId);
+	 	var root = '{{ url('/carts') }}';
+	 	$.get( root + '/' + rowId + '/down-count', function(data, status){
+	 		var sub = data.subtotal.toFixed();
+	 		console.log(data);
+	 		$('#'+ rowId).replaceWith('<input type="text" id="'+rowId+'" name="quantity" value="' + data.qty +'" size="2" style="text-align: center;">');
+	 		$('#sub' + rowId).replaceWith(+data.total);
+	 	});
 
 	 }
 
-	function upqty(rowId)
+	function up(rowId)
 	{
-		
-		alert("abc");
+		var root = '{{ url('/carts') }}';
+	 	$.get( root + '/' + rowId + '/up-count', function(data, status){
+	 		console.log(data);
+	 		$('#'+ rowId).replaceWith('<input type="text" id="'+rowId+'" name="quantity" value="' + data.qty +'" size="2" style="text-align: center;">')
+	 	});
 	}
 
 	$( ".delete" ).click(function() {

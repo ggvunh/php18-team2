@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Product;
 use App\Category;
 use App\Brand;
+use App\Parameter;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
@@ -114,6 +115,7 @@ class AdminProductController extends Controller
     }
 
     public function delete(Product $product){
+        $parameters = Parameter::where('product_id', '=', $product->id)->delete();
         $product->delete();
         return redirect('admin');
     }

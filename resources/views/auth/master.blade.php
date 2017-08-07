@@ -360,7 +360,6 @@
             <li><a href="{{ url('admin/parameters')}}"><i class="fa fa-circle-o"></i> List thông số</a></li>
           </ul>
         </li>   
-                 </li>
           <li class="treeview">
           <a href="#">
             <i class="#"></i> <span>Đơn hàng</span>
@@ -369,7 +368,16 @@
           <ul class="treeview-menu" style="display: none;">
             <li><a href="{{ url('admin/orders')}}"><i class="fa fa-circle-o"></i> List đơn hàng</a></li>
           </ul>
-        </li>    
+        </li>
+        <li class="treeview">
+          <a href="{{ url('admin/users')}}">
+            <i class="#"></i> <span>User</span>
+            <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+          </a>
+          <ul class="treeview-menu" style="display: none;">
+            <li><a href="{{ url('admin/users')}}"><i class="fa fa-circle-o"></i> List users</a></li>
+          </ul>
+        </li>        
       </ul>
     </section>
     <!-- /.sidebar -->

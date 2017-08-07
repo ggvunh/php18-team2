@@ -15,6 +15,7 @@ class AppServiceProvider extends ServiceProvider
     {
           \Schema::defaultStringLength(191);
            $view->composer('auth.partials.forms.product', 'App\Http\Views\Composers\ProductFromComposer');
+           $view->composer('auth.product.edit', 'App\Http\Views\Composers\ProductFromComposer');
            $view->composer('layouts.master', 'App\Http\Views\Composers\ProductFromComposer');
            
            // $brand = App\Brand::all();

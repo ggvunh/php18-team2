@@ -1,6 +1,6 @@
 @extends('auth.master')
 @section('content')
-             <div class="col-xs-12">
+        <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
               <h3 class="box-title">Danh Sách Sản Phẩm</h3>
