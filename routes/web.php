@@ -18,6 +18,85 @@ use Illuminate\Http\UploadedFile;
 */
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Route::resource('/', 'ProductController');
 Route::get('products/laptop', 'ProductController@listlaptop');
 Route::get('products/dell', 'ProductController@listlaptopdell');
@@ -82,4 +161,6 @@ Route::resource('admin/users', 'AdminUserController');
 Route::resource('/admin/products', 'AdminProductController');
 //admin
 Route::resource('admin', 'AdminController');
+//profile_user
+Route::resource('/user', 'UserProfileController');
 

@@ -87,11 +87,19 @@
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-user"></i>
                                     	{{ Auth::user()->name }} <span class="caret"></span>
                                 	</a>
-
-                                	<ul class="dropdown-menu">
-                                		<li>logout</li>
-                                		<li>profile</li>
-                                		<li>profile</li>
+                                	<ul class="dropdown-menu" style="min-width: 110px;">
+                                		<li>
+                                        <a href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                            Logout
+                                        </a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
+                                    </li>
+                                		<li><a href="{{ url('/user')}}">Xem Profile</li></a>
+                                		<li><a href="#">Đổi mật khẩu</li></a>
                                     </ul>
 								</li>
 								
@@ -281,7 +289,7 @@
 								<li><a href="#">Laptop</a></li>
 								<li><a href="#">Điện Thoại</a></li>
 								<li><a href="#">Máy Tính Bảng</a></li>
-								<li><a href="#">Déktop</a></li>
+								<li><a href="#">Desktop</a></li>
 								<li><a href="#">Phụ Kiện</a></li>
 							</ul>
 						</div>
