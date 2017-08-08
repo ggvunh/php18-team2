@@ -4,18 +4,26 @@ namespace App\Http\Controllers;
 use App\Order;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
+use Excel;
 
 class AdminOrderController extends Controller
 {
+    
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+    public $export;
+
+
     public function index()
     {
         $orders = Order::all();
+        // $this->export = $orders;
+        session()->put($this->export,$orders);
         return view('auth.order.index')->with('orders', $orders);
+
     }
 
     /**
@@ -130,10 +138,23 @@ class AdminOrderController extends Controller
         {
             $orders = Order::where('date', '>=', $date_start)->where('date', '<=', $date_end)->where('status', '=', 'not avalible')->get();
         }
+        $export = $orders;
         return view('auth.order.index')->with('orders', $orders);
        /* dd($status);
         // dd(strtotime($date_end));
         $orders = Order::where('date', '>=', $date_start)->where('date', '<=', $date_end)->get();
         return view('auth.order.index')->with('orders', $orders);*/
+    }
+
+    public function export_order()
+    {
+        $orders = session()->get($this->export);
+        dd($orders);
+        Excel::create('Laravel Excel', function($excel) use($orders) {
+            $excel->sheet('Excel sheet', function($sheet) use($orders) {
+                $sheet->fromArray($orders);
+            });
+        })->export('xls');
+        return redirect('admin/orders');
     }
 }

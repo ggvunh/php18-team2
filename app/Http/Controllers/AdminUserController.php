@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateUserRequest;
 use Illuminate\Http\Request;
 use App\User;
+use Excel;
 
 
 class AdminUserController extends Controller
@@ -87,5 +88,16 @@ class AdminUserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function export_users()
+    {
+        $users = User::where('is_admin', '!=', 1)->get();
+        Excel::create('Laravel Excel', function($excel) use($users) {
+            $excel->sheet('Excel sheet', function($sheet) use($users) {
+                $sheet->fromArray($users);
+            });
+        })->export('xls');
+        return redirect('admin/users');
     }
 }

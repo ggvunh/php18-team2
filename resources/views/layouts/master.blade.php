@@ -13,6 +13,9 @@
     <link href="{{ asset('css/animate.css') }}" rel="stylesheet">
 	<link href="{{ asset('css/main.css') }}" rel="stylesheet">
 	<link href="{{ asset('css/responsive.css') }}" rel="stylesheet">
+	<link href="{{ asset('ion/css/normalize.css') }}" rel="stylesheet">
+	<link href="{{ asset('ion/css/ion.rangeSlider.css') }}" rel="stylesheet">
+	<link href="{{ asset('ion/css/ion.rangeSlider.skinFlat.css') }}" rel="stylesheet">
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
@@ -22,9 +25,36 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ asset('images/ico/apple-touch-icon-114-precomposed.png') }}">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ asset('images/ico/apple-touch-icon-72-precomposed.png') }}">
     <link rel="apple-touch-icon-precomposed" href="{{ asset('images/ico/apple-touch-icon-57-precomposed.png') }}">
+    <script src="{{asset('ion/js/vendor/jquery-1.12.3.min.js')}}"></script>
+    <script src="{{ asset('ion/js/ion-rangeSlider/ion.rangeSlider.js') }}"></script>
+    <script>
+
+    $(function () {
+        $("#range").ionRangeSlider({
+            hide_min_max: true,
+            keyboard: true,
+            min: 0,
+            max: 5000,
+            from: 1000,
+            to: 4000,
+            type: 'double',
+            step: 1,
+            prefix: "$",
+            grid: true
+        });
+
+    });
+</script>
 </head><!--/head-->
 
 <body>
+<!-- <div style="position: relative; padding: 200px;">
+
+    <div>
+        <input type="text" id="range" value="" name="range" />
+    </div>
+
+</div> -->
 <div class="btn btn-default"  style="position: fixed; top: 40px; right: 5px; background-color: #FE980F">
 	@if ( Cart::count() > 0 )
 		<a id="cart" href="{{ url('carts')}}"><i class="fa fa-shopping-cart"></i><span id="count"> ({{ Cart::count() }})</span></a>
@@ -79,6 +109,11 @@
 								<li><a id="cart" href="{{ url('carts')}}" ><i class="fa fa-shopping-cart"></i><span id="count"> Giỏ Hàng</span></a></li>
 								@endif -->
 								@if (Auth::check())
+									@if(Auth::user()->is_admin == 1)
+									<li>
+										<a href="{{url('/admin')}}"><i class="fa fa-unlock-alt" aria-hidden="true"></i> Admin</a>
+									</li>
+									@endif
 								<li>
 									<a href="{{ url('carts/manage')}}"> <i class="fa fa-check-circle-o"></i>Quản lý đơn hàng</a>
 								</li>
@@ -400,6 +435,8 @@
         $( ".add_product" ).click(function() {
 		  alert( "Đã thêm sản phẩm vào giỏ hàng!" );
 		});
+
+		
 	</script>
 </body>
 </html>
