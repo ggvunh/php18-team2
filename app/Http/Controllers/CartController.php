@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Cart;
 use User;
 use Auth;
+use Excel;
 use App\Order;
 use App\OrderDetail;
 use DateTime;
@@ -103,5 +104,16 @@ class CartController extends Controller
         $item = Cart::get($rowId);
         Cart::update($rowId, $item->qty + 1);
         return response(['qty' => $item->qty, 'subtotal' => $item->subtotal], 200);
+    }
+
+    public function export_order()
+    {
+        $orders = Order::where('user_id', '=', auth::user()->id)->get();
+        Excel::create('My Order', function($excel) use($orders) {
+            $excel->sheet('Excel sheet', function($sheet) use($orders) {
+                $sheet->fromArray($orders);
+            });
+        })->export('xls');
+        return redirect('carts/manage');
     }
 }

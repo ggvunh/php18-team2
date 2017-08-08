@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -82,15 +80,17 @@
 								@endif -->
 								@if (Auth::check())
 								<li>
-									<a href="{{ url('carts/manage')}}"> <i class="fa fa-check-circle-o"></i>Quản lý đơn hàng</a>
+									<a href="{{ url('carts/manage')}}"><i class="fa fa-check-square-o" aria-hidden="true"></i> Quản lý đơn hàng</a>
 								</li>
 								<li>
-									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-user"></i>
                                     	{{ Auth::user()->name }} <span class="caret"></span>
                                 	</a>
 
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
+                                	<ul class="dropdown-menu" style="min-width: 110px;">
+                                		<li><a href="{{ url('/user')}}">Xem Profile</li></a>
+                                		<li><a href="#">Đổi mật khẩu</a></li>
+                                		<li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -99,8 +99,8 @@
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
                                         </form>
-                                    </li>
-                                </ul>
+                                    	</li>
+                                    </ul>
 								</li>
 								
 								@else
@@ -168,7 +168,8 @@
 		 <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Danh Sách Đơn Hàng Gần Đây</h3>
+              <h3 class="box-title" style="float: left;">Danh Sách Đơn Hàng Gần Đây</h3>
+              <a href="{{ url('carts/manage/export')}}" class="btn btn-success" style="float: right;"> Export Excel</a>
             </div>
             <!-- /.box-header -->
            <div class="box-body">

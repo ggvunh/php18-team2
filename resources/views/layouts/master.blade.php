@@ -115,7 +115,7 @@
 									</li>
 									@endif
 								<li>
-									<a href="{{ url('carts/manage')}}"> <i class="fa fa-check-circle-o"></i>Quản lý đơn hàng</a>
+									<a href="{{ url('carts/manage')}}"><i class="fa fa-user"></i> Quản lý đơn hàng</a>
 								</li>
 								<li>
 									<a href="#" ></a>
@@ -123,6 +123,8 @@
                                     	{{ Auth::user()->name }} <span class="caret"></span>
                                 	</a>
                                 	<ul class="dropdown-menu" style="min-width: 110px;">
+                                		<li><a href="{{ url('/user')}}">Xem Profile</li></a>
+                                		<li><a href="#">Đổi mật khẩu</a></li>
                                 		<li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
@@ -132,9 +134,7 @@
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
                                         </form>
-                                    </li>
-                                		<li><a href="{{ url('/user')}}">Xem Profile</li></a>
-                                		<li><a href="#">Đổi mật khẩu</li></a>
+                                    	</li>
                                     </ul>
 								</li>
 								
