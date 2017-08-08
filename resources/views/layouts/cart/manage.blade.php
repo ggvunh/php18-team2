@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -126,24 +128,17 @@
 						</div>
 						<div class="mainmenu pull-left">
 							<ul class="nav navbar-nav collapse navbar-collapse">
-								<li><a href="index.html" class="active">Laptop</a></li>
-								<li class="dropdown"><a href="#">Điện Thoại<i class="fa fa-angle-down"></i></a>
+								<li><a href="{{url('products/laptop')}}" class="active">Laptop</a></li>
+								<li class="dropdown"><a href="{{url('products/dienthoai')}}">Điện Thoại<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
-                                        <li><a href="shop.html">Điện thoại</a></li>
-										<li><a href="product-details.html">Product Details</a></li> 
-										<li><a href="checkout.html">Checkout</a></li> 
-										<li><a href="cart.html">Cart</a></li> 
-										<li><a href="login.html">Login</a></li> 
+                                        <li><a href="{{url('products/apple')}}">Iphone</a></li>
+										<li><a href="{{url('products/samsung')}}">SAMSUNG</a></li>  
                                     </ul>
                                 </li> 
-								<li class="dropdown"><a href="#">Máy Tính Bảng<i class="fa fa-angle-down"></i></a>
-                                    <ul role="menu" class="sub-menu">
-                                        <li><a href="blog.html">Blog List</a></li>
-										<li><a href="blog-single.html">Blog Single</a></li>
-                                    </ul>
+								<li class="dropdown"><a href="{{url('products/maytinhbang')}}">Máy Tính Bảng<i class="fa fa-angle-down"></i></a>
                                 </li> 
 								
-								<li><a href="contact-us.html">Liên Hệ</a></li>
+								<li><a href="#">Liên Hệ</a></li>
 							</ul>
 						</div>
 					</div>

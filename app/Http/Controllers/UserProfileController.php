@@ -2,16 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Product;
-use App\Category;
-use App\Brand;
-use App\User;
-use App\Order;
-use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
-use Illuminate\Http\UploadedFile;
+use App\Http\Requests\CreateUserRequest;
+use Auth;
+use App\user;
 
-class AdminController extends Controller
+class UserProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,12 +16,9 @@ class AdminController extends Controller
      */
     public function index()
     {
-       $users = User::where('is_admin', '!=', 1)->get();
-       $products = Product::all();
-       $orders = Order::all();
-       return view('auth.index')->with(['users' => $users, 'products' => $products, 'orders' => $orders]);
+        $user = User::find(Auth::user()->id);
+        return view('layouts.user.index')->with('user', $user);
     }
-
 
     /**
      * Show the form for creating a new resource.
@@ -67,7 +60,8 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+        return view('layouts.user.edit')->with('user', $user);
     }
 
     /**
@@ -77,9 +71,12 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CreateUserRequest $request, $id)
     {
-        //
+        $user = User::find($id);
+        $user->update(['name' => $request->Input('name'), 'email' => $request->Input('email'),'phone' => $request->Input('phone'), 'address' => $request->Input('address')]);
+
+        return redirect('user');
     }
 
     /**
@@ -92,4 +89,5 @@ class AdminController extends Controller
     {
         //
     }
+
 }

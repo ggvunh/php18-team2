@@ -122,9 +122,8 @@
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-user"></i>
                                     	{{ Auth::user()->name }} <span class="caret"></span>
                                 	</a>
-
-                                	<ul class="dropdown-menu" role="menu">
-                                    <li>
+                                	<ul class="dropdown-menu" style="min-width: 110px;">
+                                		<li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -134,7 +133,9 @@
                                             {{ csrf_field() }}
                                         </form>
                                     </li>
-                                	</ul>
+                                		<li><a href="{{ url('/user')}}">Xem Profile</li></a>
+                                		<li><a href="#">Đổi mật khẩu</li></a>
+                                    </ul>
 								</li>
 								
 								@else
@@ -164,23 +165,16 @@
 						<div class="mainmenu pull-left">
 							<ul class="nav navbar-nav collapse navbar-collapse">
 								<li><a href="{{url('products/laptop')}}" class="active">Laptop</a></li>
-								<li class="dropdown"><a href="#">Điện Thoại<i class="fa fa-angle-down"></i></a>
+								<li class="dropdown"><a href="{{url('products/dienthoai')}}">Điện Thoại<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
-                                        <li><a href="shop.html">Điện thoại</a></li>
-										<li><a href="product-details.html">Product Details</a></li> 
-										<li><a href="checkout.html">Checkout</a></li> 
-										<li><a href="cart.html">Cart</a></li> 
-										<li><a href="login.html">Login</a></li> 
+                                        <li><a href="{{url('products/apple')}}">Iphone</a></li>
+										<li><a href="{{url('products/samsung')}}">SAMSUNG</a></li>  
                                     </ul>
                                 </li> 
-								<li class="dropdown"><a href="#">Máy Tính Bảng<i class="fa fa-angle-down"></i></a>
-                                    <ul role="menu" class="sub-menu">
-                                        <li><a href="blog.html">Blog List</a></li>
-										<li><a href="blog-single.html">Blog Single</a></li>
-                                    </ul>
+								<li class="dropdown"><a href="{{url('products/maytinhbang')}}">Máy Tính Bảng<i class="fa fa-angle-down"></i></a>
                                 </li> 
 								
-								<li><a href="contact-us.html">Liên Hệ</a></li>
+								<li><a href="#">Liên Hệ</a></li>
 							</ul>
 						</div>
 					</div>
@@ -216,11 +210,8 @@
 								<div id="sportswear" class="panel-collapse collapse">
 									<div class="panel-body">
 										<ul>
-											<li><a href="#">Del</a></li>
-											<li><a href="#">HP </a></li>
-											<li><a href="#">Asus </a></li>
-											<li><a href="#">Acer</a></li>
-											<li><a href="#">Sony </a></li>
+											<li><a href="{{url('products/dell')}}">Del</a></li>
+											<li><a href="{{url('products/hp')}}">HP </a></li>
 										</ul>
 									</div>
 								</div>
@@ -237,44 +228,20 @@
 								<div id="mens" class="panel-collapse collapse">
 									<div class="panel-body">
 										<ul>
-											<li><a href="#">Apple (Iphone)</a></li>
-											<li><a href="#">Samsung</a></li>
-											<li><a href="#">LG</a></li>
-											<li><a href="#">Sony</a></li>
-											<li><a href="#">Nokia</a></li>
-											<li><a href="#">HTC</a></li>
-											<li><a href="#">OPPO</a></li>
-											<li><a href="#">Xiaomi</a></li>
-											<li><a href="#">MEIZU</a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-							
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title">
-										<a data-toggle="collapse" data-parent="#accordian" href="#womens">
-											<span class="badge pull-right"><i class="fa fa-plus"></i></span>
-											Apple iStore
-										</a>
-									</h4>
-								</div>
-								<div id="womens" class="panel-collapse collapse">
-									<div class="panel-body">
-										<ul>
-											<li><a href="#">Macbook</a></li>
-											<li><a href="#">iPhone</a></li>
-											<li><a href="#">iPad</a></li>
-											<li><a href="#">iMac</a></li>
-											<li><a href="#">iPod</a></li>
+											<li><a href="{{url('products/apple')}}">Apple (Iphone)</a></li>
+											<li><a href="{{url('products/samsung')}}">Samsung</a></li>
 										</ul>
 									</div>
 								</div>
 							</div>
 							<div class="panel panel-default">
 								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Máy Tính Bảng</a></h4>
+									<h4 class="panel-title"><a href="{{url('products/apple')}}">Apple</a></h4>
+								</div>
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title"><a href="{{url('products/maytinhbang')}}">Máy Tính Bảng</a></h4>
 								</div>
 							</div>
 							<div class="panel panel-default">
@@ -304,10 +271,10 @@
 							<h2>Thương Hiệu</h2>
 							<div class="brands-name">
 								<ul class="nav nav-pills nav-stacked">
-									<li><a href="#"> <span class="pull-right">(50)</span>Apple</a></li>
-									<li><a href="#"> <span class="pull-right">(56)</span>Dell</a></li>
+									<li><a href="{{url('products/apple')}}"> <span class="pull-right">(50)</span>Apple</a></li>
+									<li><a href="{{url('products/dell')}}"> <span class="pull-right">(56)</span>Dell</a></li>
+									<li><a href="{{url('products/hp')}}"> <span class="pull-right">(32)</span>HP</a></li>
 									<li><a href="#"> <span class="pull-right">(27)</span>Asus</a></li>
-									<li><a href="#"> <span class="pull-right">(32)</span>HP</a></li>
 									<li><a href="#"> <span class="pull-right">(5)</span>Lenovo</a></li>
 									<li><a href="#"> <span class="pull-right">(9)</span>Acer</a></li>
 									<li><a href="#"> <span class="pull-right">(4)</span>Sony</a></li>
@@ -357,7 +324,7 @@
 								<li><a href="#">Laptop</a></li>
 								<li><a href="#">Điện Thoại</a></li>
 								<li><a href="#">Máy Tính Bảng</a></li>
-								<li><a href="#">Déktop</a></li>
+								<li><a href="#">Desktop</a></li>
 								<li><a href="#">Phụ Kiện</a></li>
 							</ul>
 						</div>

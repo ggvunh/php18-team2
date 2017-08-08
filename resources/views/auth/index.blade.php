@@ -1,59 +1,70 @@
 @extends('auth.master')
 @section('content')
-        <div class="col-xs-12">
-          <div class="box">
-            <div class="box-header">
-              <h3 class="box-title">Danh Sách Sản Phẩm</h3>
-              <a style="float: right;" href="{{ url('admin/products/create')}}"><span class="glyphicon glyphicon-plus"></span>Thêm mới</a>
-              <form action="{{ url('admin/products/search')}}" method="get" >
-                <div class="input-group">
-                  <input type="text" name="keyword" class="form-control" placeholder="Search...">
-                  <span class="input-group-btn">
-                  <button type="submit" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
-                  </span>
-                </div>
-              </form>
+     <section class="content-header">
+      <h1>
+        Dashboard
+        <small>Thống kê</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Dashboard</li>
+      </ol>
+    </section>
+       <section class="content">
+      <!-- Small boxes (Stat box) -->
+      <div class="row">
+        <div class="col-lg-4 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-red">
+            <div class="inner">
+              <h3>{{$users->count()}}</h3>
+
+              <p>Số lượng Users</p>
             </div>
-            <!-- /.box-header -->
-           <div class="box-body">
-              <table  id="example2" class="table table-bordered table-hover">
-                <thead>
-                <tr>
-                  <th>STT</th>
-                  <th>Tên Sản Phẩm</th>
-                  <th>Active</th>
-                  <th>Sửa</th>
-                  <th>Xóa</th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach ($products as $product)
-	                <tr>
-	                  <th>{{ $product->id }} &nbsp; &nbsp; &nbsp; <img src="{{ url($product->images) }}" height="30px"></th>
-	                  <th>{{ $product->name}}</th>
-	                  <th>
-	                  <form>
-	                  	<div class="checkbox">
-	                  		@if ($product->active == 1)
-      						<label><input type="checkbox" name="active" checked disabled></label>
-      						@else
-      						<label><input type="checkbox" name="active" disabled ></label>
-      						@endif
-      					</div>
-					  </form>
-					  </th>
-	                  <th>
-	                  	<a href="{{ url('admin/products/'. $product->id . '/edit')}}"><span class="glyphicon glyphicon-pencil"></span></a>
-	                  </th>
-	                  <th>
-	                  	<a href="{{ url('admin/products/delete/'. $product->id) }}"><span class="glyphicon glyphicon-remove"></span></a>
-	                  </th>
-	                </tr>
-                @endforeach
-                </tbody>       
-              </table>
+            <div class="icon">
+              <i class="ion ion-bag"></i>
             </div>
-            <!-- /.box-body -->
+            <a href="{{ url('admin/users')}}" class="small-box-footer">Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
           </div>
-         </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-4 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-green">
+            <div class="inner">
+              <h3>{{$products->count()}}</h3>
+
+              <p>Số lượng sản phẩm</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-stats-bars"></i>
+            </div>
+            <a href="{{ url('admin/products')}}" class="small-box-footer">Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-4 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-yellow">
+            <div class="inner">
+              <h3>{{$orders->count()}}</h3>
+
+              <p>Số lượng đơn hàng</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-person-add"></i>
+            </div>
+            <a href="{{ url('admin/orders')}}" class="small-box-footer">Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+
+        <!-- ./col -->
+      </div>
+      <!-- /.row -->
+      <!-- Main row -->
+      <div class="row">
+      </div>
+      <!-- /.row (main row) -->
+    </section>
 @stop

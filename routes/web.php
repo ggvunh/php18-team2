@@ -88,6 +88,53 @@ Route::group(['middleware' => 'web'], function() {
 
 
 
+Route::resource('/', 'ProductController');
+Route::get('products/laptop', 'ProductController@listlaptop');
+Route::get('products/dell', 'ProductController@listlaptopdell');
+Route::get('products/hp', 'ProductController@listlaptophp');
+Route::get('products/dienthoai', 'ProductController@listdienthoai');
+Route::get('products/apple', 'ProductController@listapple');
+Route::get('products/samsung', 'ProductController@listdtsamsung');
+Route::get('products/maytinhbang', 'ProductController@listmaytinhbang');
 
+Route::get('admin/products/search', 'AdminProductController@search');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+//product-detail
+
+Route::get('/product-detail/{product}', 'ProductController@product_detail');
+
+Route::get('/search', 'ProductController@search');
+
+
+
+
+// Route::get('/admin', 'AdminProductController@redirect')->middleware('admin');
+
+
+
+
+
+
+Route::get('ajax', function(){
+	$products = Cart::content();
+	return view('layouts.ajax')->with('products', $products);
+});
+//admin search order
+Route::get('admin/orders/search', 'AdminOrderController@search');
+
+//admin order
+Route::resource('admin/orders', 'AdminOrderController');
+Route::resource('admin/orderdetails', 'AdminOrderDetailController');
+Route::resource('admin/{id}/orderdetails', 'AdminOrderDetailController');
+//admin user
+Route::resource('admin/users', 'AdminUserController');
+///admin product
+Route::resource('/admin/products', 'AdminProductController');
+//admin
+Route::resource('admin', 'AdminController');
+//profile_user
+Route::resource('/user', 'UserProfileController');
 
 
