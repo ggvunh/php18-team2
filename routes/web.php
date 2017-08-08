@@ -24,6 +24,7 @@ Route::group(['middleware' => 'web'], function() {
 		
 
 	    //admin user
+	    Route::get('admin/users/{id}/order', 'AdminUserController@order_user');
 		Route::get('admin/users/export', 'AdminUserController@export_users');
 		Route::resource('admin/users', 'AdminUserController');
 
