@@ -14,14 +14,9 @@ class AdminOrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public $export;
-
-
     public function index()
     {
         $orders = Order::all();
-        // $this->export = $orders;
-        session()->put($this->export,$orders);
         return view('auth.order.index')->with('orders', $orders);
 
     }
@@ -126,7 +121,7 @@ class AdminOrderController extends Controller
             {
                 $orders = Order::where('status', '=', 'not avalible')->get();
             }
-            return view('auth.order.index')->with('orders', $orders);
+            return view('auth.order.index')->with(['orders' => $orders, 'date_start' => $date_start, 'date_end' => $date_end, 'status' => $status]);
         }
         elseif ($request->Input('status') == 2) {
             $orders = Order::where('date', '>=', $date_start)->where('date', '<=', $date_end)->get();
@@ -138,19 +133,50 @@ class AdminOrderController extends Controller
         {
             $orders = Order::where('date', '>=', $date_start)->where('date', '<=', $date_end)->where('status', '=', 'not avalible')->get();
         }
-        $export = $orders;
-        return view('auth.order.index')->with('orders', $orders);
+        
+        return view('auth.order.index')->with(['orders' => $orders, 'date_start' => $date_start, 'date_end' => $date_end, 'status' => $status]);
        /* dd($status);
         // dd(strtotime($date_end));
         $orders = Order::where('date', '>=', $date_start)->where('date', '<=', $date_end)->get();
         return view('auth.order.index')->with('orders', $orders);*/
     }
 
-    public function export_order()
+    public function export_order(Request $request)
     {
-        $orders = session()->get($this->export);
-        dd($orders);
-        Excel::create('Laravel Excel', function($excel) use($orders) {
+        $date_start = $request->Input('date_start');
+        $date_end = $request->Input('date_end');
+        $status = $request->Input('status');
+        if (empty($date_start) && empty($date_end) )
+        {
+            if($request->Input('status') == 2)
+            {
+                $orders = Order::all();
+            }
+            elseif ($request->Input('status') == 1) {
+                $orders = Order::where('status', '=', 'avalible')->get();
+            }
+            else
+            {
+                $orders = Order::where('status', '=', 'not avalible')->get();
+            }
+            Excel::create('Orders Excel', function($excel) use($orders) {
+                $excel->sheet('Excel sheet', function($sheet) use($orders) {
+                    $sheet->fromArray($orders);
+                });
+            })->export('xls');
+            return redirect('admin/orders');
+        }
+        elseif ($request->Input('status') == 2) {
+            $orders = Order::where('date', '>=', $date_start)->where('date', '<=', $date_end)->get();
+        }
+        elseif ($request->Input('status') == 1) {
+            $orders = Order::where('date', '>=', $date_start)->where('date', '<=', $date_end)->where('status', '=', 'avalible')->get();
+        }
+        else
+        {
+            $orders = Order::where('date', '>=', $date_start)->where('date', '<=', $date_end)->where('status', '=', 'not avalible')->get();
+        }
+        Excel::create('Orders Excel', function($excel) use($orders) {
             $excel->sheet('Excel sheet', function($sheet) use($orders) {
                 $sheet->fromArray($orders);
             });

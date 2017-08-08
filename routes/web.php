@@ -16,12 +16,12 @@ use Illuminate\Http\UploadedFile;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::group(['middleware' => 'web'], function() {
 
 	Route::group(['middleware' => 'admin'], function () {
 
-		//admin
-		Route::resource('admin', 'AdminController');
+		
 
 	    //admin user
 		Route::get('admin/users/export', 'AdminUserController@export_users');
@@ -51,6 +51,9 @@ Route::group(['middleware' => 'web'], function() {
 		Route::get('admin/orders/search', 'AdminOrderController@search');
 		Route::resource('admin/orders', 'AdminOrderController');
 		Route::resource('admin/{id}/orderdetails', 'AdminOrderDetailController');
+
+		//admin
+		Route::resource('admin', 'AdminController');
 
 	});
 

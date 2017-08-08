@@ -93,7 +93,7 @@ class AdminUserController extends Controller
     public function export_users()
     {
         $users = User::where('is_admin', '!=', 1)->get();
-        Excel::create('Laravel Excel', function($excel) use($users) {
+        Excel::create('Users Excel', function($excel) use($users) {
             $excel->sheet('Excel sheet', function($sheet) use($users) {
                 $sheet->fromArray($users);
             });
