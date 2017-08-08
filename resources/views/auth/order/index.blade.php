@@ -16,7 +16,12 @@
               {!! Form::close() !!}
               
              </div>
-             <a href="{{url('/admin/orders/export')}}" class="btn btn-success" style="float: right;"> Export Order</a>
+             @if(isset($date_start) and isset($date_end) or isset($status))
+             <a href="{{url('/admin/orders/export?status='. $status .'&date_start='. $date_start . '&date_end='. $date_end)}}" class="btn btn-success" style="float: right;"> Export Order</a>
+             @else
+             <a href="{{url('/admin/orders/export?status=2')}}" class="btn btn-success" style="float: right;"> Export Order</a>
+             @endif
+             
               <table  id="example2" class="table table-bordered table-hover">
                 <thead>
                 <tr>
