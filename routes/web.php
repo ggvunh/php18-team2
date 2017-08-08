@@ -19,6 +19,10 @@ use Illuminate\Http\UploadedFile;
 Route::group(['middleware' => 'web'], function() {
 
 	Route::group(['middleware' => 'admin'], function () {
+
+		//admin
+		Route::resource('admin', 'AdminController');
+
 	    //admin user
 		Route::get('admin/users/export', 'AdminUserController@export_users');
 		Route::resource('admin/users', 'AdminUserController');
@@ -48,9 +52,6 @@ Route::group(['middleware' => 'web'], function() {
 		Route::resource('admin/orders', 'AdminOrderController');
 		Route::resource('admin/{id}/orderdetails', 'AdminOrderDetailController');
 
-		//admin user
-		Route::resource('admin/users', 'AdminUserController');
-		Route::get('admin/users/export', 'AdminUserController@export_users');
 	});
 
 	Route::group(['middleware' => 'auth'], function() {
@@ -65,10 +66,19 @@ Route::group(['middleware' => 'web'], function() {
 		Route::get('carts/manage/{id}/detail' , 'CartController@detail');
 		Route::get('carts/{rowId}/down-count', 'CartController@down_count');
 		Route::get('carts/{rowId}/up-count', 'CartController@up_count');
+
+		//profile_user
+		Route::resource('/user', 'UserProfileController');
 	});
 	//index
 	Route::resource('/', 'ProductController');
 	Route::get('products/laptop', 'ProductController@listlaptop');
+	Route::get('products/dell', 'ProductController@listlaptopdell');
+	Route::get('products/hp', 'ProductController@listlaptophp');
+	Route::get('products/dienthoai', 'ProductController@listdienthoai');
+	Route::get('products/apple', 'ProductController@listapple');
+	Route::get('products/samsung', 'ProductController@listdtsamsung');
+	Route::get('products/maytinhbang', 'ProductController@listmaytinhbang');
 
 
 	Auth::routes();
@@ -87,54 +97,5 @@ Route::group(['middleware' => 'web'], function() {
 });
 
 
-
-Route::resource('/', 'ProductController');
-Route::get('products/laptop', 'ProductController@listlaptop');
-Route::get('products/dell', 'ProductController@listlaptopdell');
-Route::get('products/hp', 'ProductController@listlaptophp');
-Route::get('products/dienthoai', 'ProductController@listdienthoai');
-Route::get('products/apple', 'ProductController@listapple');
-Route::get('products/samsung', 'ProductController@listdtsamsung');
-Route::get('products/maytinhbang', 'ProductController@listmaytinhbang');
-
-Route::get('admin/products/search', 'AdminProductController@search');
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-//product-detail
-
-Route::get('/product-detail/{product}', 'ProductController@product_detail');
-
-Route::get('/search', 'ProductController@search');
-
-
-
-
-// Route::get('/admin', 'AdminProductController@redirect')->middleware('admin');
-
-
-
-
-
-
-Route::get('ajax', function(){
-	$products = Cart::content();
-	return view('layouts.ajax')->with('products', $products);
-});
-//admin search order
-Route::get('admin/orders/search', 'AdminOrderController@search');
-
-//admin order
-Route::resource('admin/orders', 'AdminOrderController');
-Route::resource('admin/orderdetails', 'AdminOrderDetailController');
-Route::resource('admin/{id}/orderdetails', 'AdminOrderDetailController');
-//admin user
-Route::resource('admin/users', 'AdminUserController');
-///admin product
-Route::resource('/admin/products', 'AdminProductController');
-//admin
-Route::resource('admin', 'AdminController');
-//profile_user
-Route::resource('/user', 'UserProfileController');
 
 
