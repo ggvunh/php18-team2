@@ -3,10 +3,10 @@
 	<div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Danh Sách User</h3>
-              <a style="float: right;" href="{{ url('admin/users/create')}}"><span class="glyphicon glyphicon-plus"></span>Thêm mới</a>
-              <form action="{{ url('admin/products/search')}}" method="get" >
-                <div class="input-group">
+              <a style="float: right; margin-right: 5px" href="{{ url('admin/users/create')}}" class="btn btn-primary"> Thêm mới </a>
+              <a style="float: right;  margin-right: 5px" href="{{ url('admin/users/export')}}" class="btn btn-success"> Export </a>
+              <form action="{{ url('admin/users/search')}}" method="get" >
+                <div class="input-group" style="width: 50%">
                   <input type="text" name="keyword" class="form-control" placeholder="Search...">
                   <span class="input-group-btn">
                   <button type="submit" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
@@ -23,8 +23,9 @@
                   <th> Email</th>
                   <th> Điện Thoại</th>
                   <th> Địa Chỉ</th>
-                  <th> Sửa</th>
-                  <th> Đơn Đặt Hàng</th>
+                  <th style="text-align: center;"> Sửa</th>
+                  <th style="text-align: center;"> Đơn Đặt Hàng</th>
+                  <th style="text-align: center;"> Xóa</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -34,8 +35,9 @@
 	                  <td>{{$user->email}}</td>
 	                  <td>{{$user->phone}}</td>
 	                  <td>{{$user->address}}</td>
-	                  <td><a href="{{url('admin/users/'. $user->id . '/edit')}}"> Sửa</a></td>
-	                  <td><a href="#"> Xem</a></td>
+	                  <td style="text-align: center;"><a href="{{url('admin/users/'. $user->id . '/edit')}}"> Sửa</a></td>
+	                  <td style="text-align: center;"><a href="#"> Xem</a></td>
+	                  <td style="text-align: center;"><i class="fa fa-trash-o" aria-hidden="true"></i></td>
 	                </tr>
                 @endforeach
                 </tbody>       

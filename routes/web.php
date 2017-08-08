@@ -16,84 +16,75 @@ use Illuminate\Http\UploadedFile;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Route::group(['middleware' => 'web'], function() {
+
+	Route::group(['middleware' => 'admin'], function () {
+	    //admin user
+		Route::get('admin/users/export', 'AdminUserController@export_users');
+		Route::resource('admin/users', 'AdminUserController');
+
+		///admin product
+		Route::resource('/admin/products', 'AdminProductController');
+		Route::get('admin/products/delete/{product}', 'AdminProductController@delete');
+		Route::get('admin/products/search', 'AdminProductController@search');
+		Route::get('/admin', 'AdminProductController@redirect');
+
+
+		///admin category
+		Route::resource('admin/categories', 'AdminCategoryController');
+		Route::get('admin/categories/delete/{category}', 'AdminCategoryController@delete');
+
+		///admin brans
+		Route::resource('admin/brands', 'AdminBrandController');
+		Route::get('admin/brands/delete/{brand}', 'AdminBrandController@delete');
+
+		//admin parameters
+		Route::resource('admin/parameters', 'AdminParameterController');
+		Route::get('admin/parameters/delete/{parameter}', 'AdminParameterController@delete');
+
+		//admin order	
+		Route::get('admin/orders/export', 'AdminOrderController@export_order');
+		Route::get('admin/orders/search', 'AdminOrderController@search');
+		Route::resource('admin/orders', 'AdminOrderController');
+		Route::resource('admin/{id}/orderdetails', 'AdminOrderDetailController');
+
+		//admin user
+		Route::resource('admin/users', 'AdminUserController');
+		Route::get('admin/users/export', 'AdminUserController@export_users');
+	});
+
+	Route::group(['middleware' => 'auth'], function() {
+
+		///carts
+		Route::get('/carts', 'CartController@index');
+		Route::get('carts/delete/{rowId}', 'CartController@delete');
+		Route::get('carts/checkout', 'CartController@checkout');
+		Route::post('/carts', 'CartController@store_order');
+		Route::get('carts/manage' , 'CartController@manage');
+		Route::get('carts/manage/{id}/cancel' , 'CartController@cancel');
+		Route::get('carts/manage/{id}/detail' , 'CartController@detail');
+		Route::get('carts/{rowId}/down-count', 'CartController@down_count');
+		Route::get('carts/{rowId}/up-count', 'CartController@up_count');
+	});
+	//index
+	Route::resource('/', 'ProductController');
+	Route::get('products/laptop', 'ProductController@listlaptop');
+
+
+	Auth::routes();
+
+	Route::get('/home', 'HomeController@index')->name('home');
+	//product-detail
+	Route::get('/product-detail/{product}', 'ProductController@product_detail');
+	Route::get('/search', 'ProductController@search');
+
+	//add cart
+	Route::get('carts/{id}/add', 'CartController@add');
+
+	Route::get('index2', function(){
+		return view('layouts.index2');
+	});
+});
 
 
 
@@ -121,28 +112,10 @@ Route::get('/search', 'ProductController@search');
 
 // Route::get('/admin', 'AdminProductController@redirect')->middleware('admin');
 
-Route::get('admin/products/delete/{product}', 'AdminProductController@delete');
-///admin category
-Route::resource('admin/categories', 'AdminCategoryController');
-Route::get('admin/categories/delete/{category}', 'AdminCategoryController@delete');
-///admin brans
-Route::resource('admin/brands', 'AdminBrandController');
-Route::get('admin/brands/delete/{brand}', 'AdminBrandController@delete');
 
-///carts
-Route::get('/carts', 'CartController@index');
-Route::get('carts/{id}/add', 'CartController@add');
-Route::get('carts/delete/{rowId}', 'CartController@delete');
-Route::get('carts/checkout', 'CartController@checkout');
-Route::post('/carts', 'CartController@store_order');
-Route::get('carts/manage' , 'CartController@manage');
-Route::get('carts/manage/{id}/cancel' , 'CartController@cancel');
-Route::get('carts/manage/{id}/detail' , 'CartController@detail');
-Route::get('carts/{rowId}/down-count', 'CartController@down_count');
-Route::get('carts/{rowId}/up-count', 'CartController@up_count');
-//parameters
-Route::resource('admin/parameters', 'AdminParameterController');
-Route::get('admin/parameters/delete/{parameter}', 'AdminParameterController@delete');
+
+
+
 
 Route::get('ajax', function(){
 	$products = Cart::content();
@@ -163,4 +136,5 @@ Route::resource('/admin/products', 'AdminProductController');
 Route::resource('admin', 'AdminController');
 //profile_user
 Route::resource('/user', 'UserProfileController');
+
 
