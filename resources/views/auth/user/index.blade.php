@@ -36,8 +36,8 @@
 	                  <td>{{$user->phone}}</td>
 	                  <td>{{$user->address}}</td>
 	                  <td style="text-align: center;"><a href="{{url('admin/users/'. $user->id . '/edit')}}"> Sửa</a></td>
-	                  <td style="text-align: center;"><a href="#"> Xem</a></td>
-	                  <td style="text-align: center;"><i class="fa fa-trash-o" aria-hidden="true"></i></td>
+	                  <td style="text-align: center;"><a href="{{ url('admin/users/' .$user->id. '/order')}}"> Xem</a></td>
+	                  <td style="text-align: center;"><a href="#"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
 	                </tr>
                 @endforeach
                 </tbody>       

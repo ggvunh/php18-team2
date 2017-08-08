@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateUserRequest;
 use Illuminate\Http\Request;
 use App\User;
+use App\Order;
 use Excel;
 
 
@@ -99,5 +100,11 @@ class AdminUserController extends Controller
             });
         })->export('xls');
         return redirect('admin/users');
+    }
+
+    public function order_user($id)
+    {
+        $orders = Order::where('user_id', '=', $id)->get();
+        return view('auth.user.user-orders')->with('orders', $orders);
     }
 }
