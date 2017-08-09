@@ -122,6 +122,6 @@ class CartController extends Controller
     {
         $items = OrderDetail::where('order_id', '=', $order)->get();
         $pdf = PDF::loadView('pdf.order-detail', ['items' => $items]);
-        return $pdf->stream();
+        return $pdf->stream('order-detail.pdf');
     }
 }

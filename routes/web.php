@@ -91,6 +91,7 @@ Route::group(['middleware' => 'web'], function() {
 
 	Route::get('/home', 'HomeController@index')->name('home');
 	//product-detail
+	Route::post('product-detail/{id}/comment', 'ProductController@comment');
 	Route::get('/product-detail/{product}', 'ProductController@product_detail');
 	Route::get('/search', 'ProductController@search');
 
