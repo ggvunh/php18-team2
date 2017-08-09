@@ -18,6 +18,7 @@
                 </tr>
                 </thead>
                 <tbody>
+                <?php  $total = 0; ?>
                 @foreach ($orderdetails as $orderdetail)
                  <tr>
                   <td>{{ $orderdetail ->id}}</td>
@@ -26,12 +27,14 @@
                   <td>{{ $orderdetail ->order_id}}</td>
                   <td>{{ $orderdetail ->product_id}}</td>
                 </tr>
+                <?php $total+=$orderdetail->quantity * $orderdetail->price ?>
                 @endforeach
-                </tbody>
-           
+                </tbody>           
               </table>
+               <p style="float: right;"><b>Tổng Tiền: {{ number_format($total, '2', ',', '.') . ' VNĐ' }}</b></p> 
             </div>
             <!-- /.box-body -->
           </div>
          </div>
+         <a href="{{ url('carts/manage/'. $orderdetail->order_id. '/detail/export')}}" class="btn btn-success" style="float: right;margin-right: 16px;"> Export PDF</a>
 @stop
