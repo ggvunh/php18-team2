@@ -23,7 +23,8 @@ class AdminController extends Controller
        $users = User::where('is_admin', '!=', 1)->get();
        $products = Product::all();
        $orders = Order::all();
-       return view('auth.index')->with(['users' => $users, 'products' => $products, 'orders' => $orders]);
+       $orders_waiting = Order::where('shipping_status', '=', 'waiting')->get();
+       return view('auth.index')->with(['users' => $users, 'products' => $products, 'orders' => $orders, 'orders_waiting' => $orders_waiting]);
     }
 
 
