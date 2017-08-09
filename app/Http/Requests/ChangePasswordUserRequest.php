@@ -34,6 +34,8 @@ class CreateUserRequest extends FormRequest
             'password.required' => 'vui lòng nhập mật khẩu',
             'password.confirmed' => 'nhập lại mật khẩu chưa chính xác',
             'password.min' => 'mật khẩu phải lớn hơn 5 kí tự',
+            'verify_password.required' => 'vui lòng nhập lại password',
+            'verify_password.same' => 
         ];
     }
 }
