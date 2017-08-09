@@ -115,7 +115,7 @@
 									</li>
 									@endif
 								<li>
-									<a href="{{ url('carts/manage')}}"><i class="fa fa-user"></i> Quản lý đơn hàng</a>
+									<a href="{{ url('carts/manage')}}"><i class="fa fa-check-square-o" aria-hidden="true"></i> Quản lý đơn hàng</a>
 								</li>
 								<li>
 									<a href="#" ></a>

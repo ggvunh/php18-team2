@@ -71,6 +71,7 @@ Route::group(['middleware' => 'web'], function() {
 		Route::get('carts/{rowId}/down-count', 'CartController@down_count');
 		Route::get('carts/{rowId}/up-count', 'CartController@up_count');
 		Route::get('carts/manage/export', 'CartController@export_order');
+		Route::get('carts/manage/{id}/detail/export', 'CartController@export_order_detail');
 
 		//profile_user
 		Route::resource('/user', 'UserProfileController');

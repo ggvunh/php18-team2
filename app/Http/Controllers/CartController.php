@@ -7,6 +7,7 @@ use Cart;
 use User;
 use Auth;
 use Excel;
+use PDF;
 use App\Order;
 use App\OrderDetail;
 use DateTime;
@@ -113,7 +114,14 @@ class CartController extends Controller
             $excel->sheet('Excel sheet', function($sheet) use($orders) {
                 $sheet->fromArray($orders);
             });
-        })->export('xls');
+        })->export('pdf');
         return redirect('carts/manage');
+    }
+
+    public function export_order_detail($order)
+    {
+        $items = OrderDetail::where('order_id', '=', $order)->get();
+        $pdf = PDF::loadView('pdf.order-detail', ['items' => $items]);
+        return $pdf->stream();
     }
 }

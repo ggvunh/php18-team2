@@ -168,8 +168,9 @@
 		 <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Chi Tiết Đơn Hàng </h3>
+              <h3 class="box-title" style="float: left;">Chi Tiết Đơn Hàng </h3>
             </div>
+
             <!-- /.box-header -->
            <div class="box-body">
            	<table  id="example2" class="table table-bordered table-hover">
@@ -204,6 +205,7 @@
             <!-- /.box-body -->
           </div>
          </div>
+         <a href="{{ url('carts/manage/'. $item->order_id. '/detail/export')}}" class="btn btn-success" style="float: right;"> Export PDF</a>
 		</div>
 		
 	</section>
