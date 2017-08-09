@@ -114,22 +114,21 @@
 		
 		<div class="tab-pane fade active in" id="reviews" >
 			<div class="col-sm-12">
-				<ul>
-					<li><a href=""><i class="fa fa-user"></i>EUGEN</a></li>
-					<li><a href=""><i class="fa fa-clock-o"></i>12:41 PM</a></li>
-					<li><a href=""><i class="fa fa-calendar-o"></i>31 DEC 2014</a></li>
-				</ul>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-				<p><b>Write Your Review</b></p>
-				
-				<form action="#">
-					<span>
-						<input type="text" placeholder="Your Name"/>
-						<input type="email" placeholder="Email Address"/>
-					</span>
-					<textarea name="" ></textarea>
-					<b>Rating: </b> <img src="images/product-details/rating.png" alt="" />
-					<button type="button" class="btn btn-default pull-right">
+			@foreach ( $comments as $comment)
+				<div style="border-bottom: 1px solid #eee; margin-bottom: 2px; ">
+					<ul style="margin: 0px 0 5px;">
+					<li style="color: green !important"><i class="fa fa-user"></i><b> {{ App\User::find($comment->user_id)->name}}</b></li> &nbsp;
+					<li style="color: #A5ABAF !important"><i class="fa fa-clock-o"></i> {{ $comment->updated_at->diffForHumans() }}</li>
+					<!-- <li><a href=""><i class="fa fa-calendar-o"></i>31 DEC 2014</a></li> -->
+					</ul>
+					<p style="padding-left: 10px">{{$comment->content}}</p>
+				</div>
+			@endforeach
+				<p><b>Viết Bình Luận Của Bạn</b></p>
+				<form action="{{ url('product-detail/'.$product->id.'/comment')}}" method="post">
+				{{ csrf_field() }}
+					<textarea name="cmt" id="cmt" required></textarea>
+					<button type="submit" class="btn btn-default pull-right">
 						Submit
 					</button>
 				</form>

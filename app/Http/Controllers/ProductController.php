@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Product;
 use App\Category;
 use App\Brand;
+use App\Comment;
+use Auth;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Input;
 
 class ProductController extends Controller
@@ -90,7 +93,8 @@ class ProductController extends Controller
 
     public function product_detail(Product $product)
     {
-        return view('layouts.product-detail')->with('product', $product);
+        $comments = Comment::where('product_id', '=', $product->id)->get();
+        return view('layouts.product-detail')->with('product', $product)->with('comments', $comments);
     }
 
     public function search()
@@ -153,5 +157,13 @@ class ProductController extends Controller
         $categories = Category::all();
         $brands = Brand::all();
         return view('layouts.index')->with(['products' => $products, 'catgories' => $categories, 'brands' => $brands]);
+    }
+
+    public function comment(Request $request,$product)
+    {
+        $date = Carbon::now();
+        $cmt =Comment::create(['content' => $request->Input('cmt'), 'user_id' => Auth::user()->id, 'created-at' => $date, 'update_at' => $date, 'product_id' => $product]);
+
+        return redirect('product-detail/'.$product);
     }
 }

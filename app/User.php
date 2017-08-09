@@ -35,4 +35,8 @@ class User extends Authenticatable
     {
       return $this->id == $cat->user_id;
     }
+
+    public function Comment(){
+        return $this->hasMany('App\Comment');
+    }
 }

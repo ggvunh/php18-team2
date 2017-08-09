@@ -16,7 +16,9 @@ class Product extends Model
     public function Brand() {
       return $this->belongsTo('App\Brand');
     }
-
+    public function Comment(){
+        return $this->hasMany('App\Comment');
+    }
     public function scopeSearchByKeyword($query, $keyword, $category)
     {
         if ($keyword!='') {
