@@ -29,9 +29,9 @@ Route::group(['middleware' => 'web'], function() {
 		Route::resource('admin/users', 'AdminUserController');
 
 		///admin product
+		Route::get('admin/products/search', 'AdminProductController@search');
 		Route::resource('/admin/products', 'AdminProductController');
 		Route::get('admin/products/delete/{product}', 'AdminProductController@delete');
-		Route::get('admin/products/search', 'AdminProductController@search');
 		Route::get('/admin', 'AdminProductController@redirect');
 
 

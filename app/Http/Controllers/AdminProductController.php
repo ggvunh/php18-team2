@@ -119,13 +119,13 @@ class AdminProductController extends Controller
         $cmt = Comment::where('product_id', '=', $product->id)->delete();
         $parameters = Parameter::where('product_id', '=', $product->id)->delete();
         $product->delete();
-        return redirect('admin/product');
+        return redirect('admin/products');
     }
 
     public function search(){
         $keyword = Input::get('keyword', '');
         $products = Product::search($keyword)->paginate(6);
-        return view('auth.index')->with('products',$products);
+        return view('auth.product.index')->with('products',$products);
     }
 
    /* public function redirect()
