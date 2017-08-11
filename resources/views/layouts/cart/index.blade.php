@@ -191,7 +191,7 @@
 								<h4><a href="">{{$item->name}}</a></h4>
 							</td>
 							<td class="cart_price">
-								<p style="margin-top: 20px">{{ number_format($item->price, 2, ',',',') . ' VNĐ'}}</p>
+								<p style="margin-top: 20px">{{ number_format($item->price, 0, '.','.') . ' VNĐ'}}</p>
 							</td>
 							<td class="cart_quantity">
 								<div class="cart_quantity_button">
@@ -203,7 +203,7 @@
 								</form>
 							</td>
 							<td class="cart_total">
-								<p class="cart_total_price" style="margin-top: 20px"><span id="sub{{$item->rowId}}">{{ number_format($item->subtotal, 2, ',',',') . ' VNĐ' }}</span></p>
+								<p class="cart_total_price" style="margin-top: 20px"><span id="sub{{$item->rowId}}">{{ number_format($item->subtotal, 0, '.','.') . ' VNĐ' }}</span></p>
 							</td>
 							<td class="cart_delete">
 								<a class="cart_quantity_delete delete" href="{{ url('carts/delete/' . $item->rowId) }}"><i class="fa fa-times"></i></a>
@@ -362,10 +362,10 @@
 	 {
 	 	var root = '{{ url('/carts') }}';
 	 	$.get( root + '/' + rowId + '/down-count', function(data, status){
-	 		var sub = data.subtotal.toFixed();
+	 		var sub = data.subtotal.toLocaleString();
 	 		console.log(data);
 	 		$('#'+ rowId).replaceWith('<input type="text" id="'+rowId+'" name="quantity" value="' + data.qty +'" size="2" style="text-align: center;">');
-	 		$('#sub' + rowId).replaceWith(+data.total);
+	 		$('#sub' + rowId).replaceWith('<span id="sub'+rowId+'">'+sub+' VNĐ </span>');
 	 	});
 
 	 }
@@ -374,8 +374,10 @@
 	{
 		var root = '{{ url('/carts') }}';
 	 	$.get( root + '/' + rowId + '/up-count', function(data, status){
+	 		var sub = data.subtotal.toLocaleString();
 	 		console.log(data);
-	 		$('#'+ rowId).replaceWith('<input type="text" id="'+rowId+'" name="quantity" value="' + data.qty +'" size="2" style="text-align: center;">')
+	 		$('#'+ rowId).replaceWith('<input type="text" id="'+rowId+'" name="quantity" value="' + data.qty +'" size="2" style="text-align: center;">');
+	 		$('#sub' + rowId).replaceWith('<span id="sub'+rowId+'">'+sub+' VNĐ </span>');
 	 	});
 	}
 
