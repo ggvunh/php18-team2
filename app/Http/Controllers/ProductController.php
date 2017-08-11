@@ -161,9 +161,7 @@ class ProductController extends Controller
 
     public function comment(Request $request,$product)
     {
-        $date = Carbon::now();
-        $cmt =Comment::create(['content' => $request->Input('cmt'), 'user_id' => Auth::user()->id, 'created-at' => $date, 'update_at' => $date, 'product_id' => $product]);
-
+        $cmt =Comment::create(['content' => $request->Input('cmt'), 'user_id' => Auth::user()->id, 'product_id' => $product]);
         return redirect('product-detail/'.$product);
     }
 }

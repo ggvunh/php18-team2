@@ -6,6 +6,7 @@ use App\Product;
 use App\Category;
 use App\Brand;
 use App\Parameter;
+use App\Comment;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
@@ -115,9 +116,10 @@ class AdminProductController extends Controller
     }
 
     public function delete(Product $product){
+        $cmt = Comment::where('product_id', '=', $product->id)->delete();
         $parameters = Parameter::where('product_id', '=', $product->id)->delete();
         $product->delete();
-        return redirect('admin');
+        return redirect('admin/product');
     }
 
     public function search(){
