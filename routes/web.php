@@ -79,11 +79,11 @@ Route::group(['middleware' => 'web'], function() {
 	//index
 	Route::resource('/', 'ProductController');
 	Route::get('products/laptop', 'ProductController@listlaptop');
-	Route::get('products/dell', 'ProductController@listlaptopdell');
-	Route::get('products/hp', 'ProductController@listlaptophp');
+	Route::get('products/laptop/dell', 'ProductController@listlaptopdell');
+	Route::get('products/laptop/hp', 'ProductController@listlaptophp');
 	Route::get('products/dienthoai', 'ProductController@listdienthoai');
-	Route::get('products/apple', 'ProductController@listapple');
-	Route::get('products/samsung', 'ProductController@listdtsamsung');
+	Route::get('products/dienthoai/apple', 'ProductController@listapple');
+	Route::get('products/dienthoai/samsung', 'ProductController@listdtsamsung');
 	Route::get('products/maytinhbang', 'ProductController@listmaytinhbang');
 
 
