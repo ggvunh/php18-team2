@@ -164,4 +164,17 @@ class ProductController extends Controller
         $cmt =Comment::create(['content' => $request->Input('cmt'), 'user_id' => Auth::user()->id, 'product_id' => $product]);
         return redirect('product-detail/'.$product);
     }
+
+    //search theo giá
+    public function search_price(Request $request)
+    {
+        $price = $request->Input('sl2');
+        $vitri = strpos($price, ',');
+        $price_min = substr($price, 0, $vitri) * 1000000;
+        $price_max = substr($price, $vitri+1) * 1000000;
+        $products = Product::where('price', '>=', $price_min)->where('price', '<=', $price_max)->paginate(6);
+        $categories = Category::all();
+        $brands = Brand::all();
+        return view('layouts.index')->with(['products' => $products, 'catgories' => $categories, 'brands' => $brands]);
+    }
 }
