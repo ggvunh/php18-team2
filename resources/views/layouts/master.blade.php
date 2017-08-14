@@ -25,26 +25,10 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ asset('images/ico/apple-touch-icon-114-precomposed.png') }}">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ asset('images/ico/apple-touch-icon-72-precomposed.png') }}">
     <link rel="apple-touch-icon-precomposed" href="{{ asset('images/ico/apple-touch-icon-57-precomposed.png') }}">
-    <script src="{{asset('ion/js/vendor/jquery-1.12.3.min.js')}}"></script>
-    <script src="{{ asset('ion/js/ion-rangeSlider/ion.rangeSlider.js') }}"></script>
-    <script>
-
-    $(function () {
-        $("#range").ionRangeSlider({
-            hide_min_max: true,
-            keyboard: true,
-            min: 0,
-            max: 5000,
-            from: 1000,
-            to: 4000,
-            type: 'double',
-            step: 1,
-            prefix: "$",
-            grid: true
-        });
-
-    });
-</script>
+    <!-- slider-range -->
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+	<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+	
 </head><!--/head-->
 
 <body>
@@ -284,8 +268,12 @@
 							<div class="price-range"><!--price-range-->
 							<h2>Giá</h2>
 							<div class="well text-center">
-								 <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="600" data-slider-step="5" data-slider-value="[250,450]" id="sl2" ><br />
-								 <b class="pull-left">$ 0</b> <b class="pull-right">$ 600</b>
+								<form action="{{ url('search/price')}}" method="POST">
+									{{ csrf_field() }}
+									 <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="50" data-slider-step="0.5" data-slider-value="[0,25]" id="sl2" name="sl2" ><br />
+									 <b class="pull-left">0 tr</b> <b class="pull-right">50 tr</b><br>
+									 <button type="submit" class="btn btn-success">Tìm Kiếm</button>
+								 </form>
 							</div>
 						</div><!--/price-range-->
 						<div class="shipping text-center"><!--shipping-->

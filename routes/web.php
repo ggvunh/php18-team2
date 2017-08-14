@@ -94,6 +94,7 @@ Route::group(['middleware' => 'web'], function() {
 	Route::post('product-detail/{id}/comment', 'ProductController@comment');
 	Route::get('/product-detail/{product}', 'ProductController@product_detail');
 	Route::get('/search', 'ProductController@search');
+	Route::post('search/price', 'ProductController@search_price');
 
 	//add cart
 	Route::get('carts/{id}/add', 'CartController@add');
