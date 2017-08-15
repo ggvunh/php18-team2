@@ -48,10 +48,13 @@ Route::group(['middleware' => 'web'], function() {
 		Route::get('admin/parameters/delete/{parameter}', 'AdminParameterController@delete');
 
 		//admin order	
+		Route::get('admin/orders/summary','AdminOrderController@report');
+		Route::get('admin/orders/summary/search','AdminOrderController@report_search');
 		Route::get('admin/orders/export', 'AdminOrderController@export_order');
 		Route::get('admin/orders/search', 'AdminOrderController@search');
 		Route::resource('admin/orders', 'AdminOrderController');
 		Route::resource('admin/{id}/orderdetails', 'AdminOrderDetailController');
+
 
 		//admin
 		Route::resource('admin', 'AdminController');

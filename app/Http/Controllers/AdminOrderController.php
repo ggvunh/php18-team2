@@ -183,4 +183,38 @@ class AdminOrderController extends Controller
         })->export('xls');
         return redirect('admin/orders');
     }
+        public function report()
+    {
+        $orders = Order::all();
+        return view('auth.order.report')->with('orders', $orders);
+
+    }
+    public function report_search (Request $request)
+    {
+
+        $date_start = $request->Input('date_start');
+        $date_end = $request->Input('date_end');
+        if (empty($date_start) && empty($date_end) )
+        {
+            $orders = $orders = Order::where('date', '>=', '0/0/0')->where('date', '<=', '0/0/0')->get();
+            $total = total_summary(12);
+            return view('auth.order.report')->with(['orders' => $orders, 'total' => $total]);
+        }
+        elseif(!empty($date_start) && empty($date_end))
+        {
+            $orders = Order::where('date', '>=', $date_start)->get();
+            return view('auth.order.report')->with(['orders' => $orders]);
+        }
+        elseif (empty($date_start) && !empty($date_end)) {
+            $orders = Order::where('date', '<=', $date_end )->get();
+            return view('auth.order.report')->with(['orders' => $orders]);
+        }
+        $orders = Order::where('date', '>=', $date_start)->where('date', '<=', $date_end)->get();
+        return view('auth.order.report')->with(['orders' => $orders]);
+    }
+
+    public function total_summary($id)
+    {
+        return $id;
+    }
 }

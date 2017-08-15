@@ -367,6 +367,7 @@
           </a>
           <ul class="treeview-menu" style="display: none;">
             <li><a href="{{ url('admin/orders')}}"><i class="fa fa-circle-o"></i> List đơn hàng</a></li>
+            <li><a href="{{ url('admin/orders/summary')}}"><i class="fa fa-circle-o"></i> Tổng kết</a></li>
           </ul>
         </li>
         <li class="treeview">
