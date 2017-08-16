@@ -149,14 +149,14 @@
 						<div class="mainmenu pull-left">
 							<ul class="nav navbar-nav collapse navbar-collapse">
 								<li class="dropdown">
-									<a class="{{is_current_route('products/laptop')}}" href="{{url('products/laptop')}}">Laptop<i class="fa fa-angle-down"></i></a>
+									<a class="{{is_current_route('products/laptop/*')}}" href="{{url('products/laptop')}}">Laptop<i class="fa fa-angle-down"></i></a>
 									<ul role="menu" class="sub-menu">
-                                        <li><a class="{{is_current_route('products/laptop/dell')}}" href="{{url('products/laptop/dell')}}">Dell</a></li>
-										<li><a class="{{is_current_route('products/laptop/hp')}}" href="{{url('products/laptop/hp')}}">HP</a></li>  
+                                        <li><a href="{{url('products/laptop/dell')}}">Dell</a></li>
+										<li><a href="{{url('products/laptop/hp')}}">HP</a></li>  
                                     </ul>
 								</li>
 								<li class="dropdown">
-									<a class="{{is_current_route('products/dienthoai')}}" href="{{url('products/dienthoai')}}">Điện Thoại<i class="fa fa-angle-down"></i></a>
+									<a class="{{is_current_route('products/dienthoai/*')}}" href="{{url('products/dienthoai')}}">Điện Thoại<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
                                         <li><a class="{{is_current_route('products/dienthoai/apple')}}" href="{{url('products/dienthoai/apple')}}">Iphone</a></li>
 										<li><a class="{{is_current_route('products/dienthoai/samsung')}}" href="{{url('products/dienthoai/samsung')}}">SAMSUNG</a></li>  

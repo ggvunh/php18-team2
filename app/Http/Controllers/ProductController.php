@@ -102,7 +102,7 @@ class ProductController extends Controller
         $keyword = Input::get('keyword', ' ');
         $category = Input::get('category', '');
         $products = Product::search($keyword)->where('active', '=', 1)->paginate(6);
-        return view('layouts.index')->with('products',$products)->withSuccess('Cat has been deleted.');
+        return view('layouts.index')->with('products',$products);
     }
 
     public function listlaptop()
