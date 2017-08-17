@@ -13,7 +13,7 @@ class CreateTechnicalInfoTable extends Migration
      */
     public function up()
     {
-        Schema::create('technical_info', function (Blueprint $table) {
+        Schema::create('parameters', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->string('parameters');
@@ -29,6 +29,6 @@ class CreateTechnicalInfoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('technical_info');
+        Schema::dropIfExists('parameters');
     }
 }

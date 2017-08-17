@@ -23,7 +23,8 @@
                   <th> Email</th>
                   <th> Điện Thoại</th>
                   <th> Địa Chỉ</th>
-                  <th style="text-align: center;"> Sửa</th>
+                  <th style="text-align: center;"> Chức Vụ</th>
+                  <th style="text-align: center;"> Phân Quyền</th>
                   <th style="text-align: center;"> Đơn Đặt Hàng</th>
                   <th style="text-align: center;"> Xóa</th>
                 </tr>
@@ -35,9 +36,10 @@
 	                  <td>{{$user->email}}</td>
 	                  <td>{{$user->phone}}</td>
 	                  <td>{{$user->address}}</td>
-	                  <td style="text-align: center;"><a href="{{url('admin/users/'. $user->id . '/edit')}}"> Sửa</a></td>
+                    <td style="text-align: center;"><?php if($user->is_admin == 1) echo("Admin"); else echo("Khách Hàng"); ?></td>
+	                  <td style="text-align: center;"><a href="{{url('admin/users/'. $user->id . '/phan-quyen')}}"> Phân Quyền</a></td>
 	                  <td style="text-align: center;"><a href="{{ url('admin/users/' .$user->id. '/order')}}"> Xem</a></td>
-	                  <td style="text-align: center;"><a href="#"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+	                  <td style="text-align: center;"><a href="{{ url('admin/users/' . $user->id .'/delete')}}"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
 	                </tr>
                 @endforeach
                 </tbody>       

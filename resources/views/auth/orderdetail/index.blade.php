@@ -25,7 +25,12 @@
                   <td>{{ $orderdetail ->quantity}}</td>
                   <td>{{ $orderdetail->price . ' VNĐ'}}</td>
                   <td>{{ $orderdetail ->order_id}}</td>
-                  <td>{{ $orderdetail ->product_id}}</td>
+                  <?php $product = App\Product::find($orderdetail->product_id); ?>
+                  @if (empty($product))
+                  <td> Sản Phẩm đã xóa hoặc ngừng kinh doanh</td>
+                  @else
+                  <td>{{ $product->name}}</td>
+                  @endif
                 </tr>
                 <?php $total+=$orderdetail->quantity * $orderdetail->price ?>
                 @endforeach

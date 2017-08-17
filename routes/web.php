@@ -26,6 +26,9 @@ Route::group(['middleware' => 'web'], function() {
 	    //admin user
 	    Route::get('admin/users/{id}/order', 'AdminUserController@order_user');
 		Route::get('admin/users/export', 'AdminUserController@export_users');
+		Route::get('admin/users/{id}/delete', 'AdminUserController@delete_user');
+		Route::get('admin/users/{id}/phan-quyen', 'AdminUserController@phan_quyen');
+		Route::post('admin/users/{id}/phan-quyen', 'AdminUserController@excute_phan_quyen');
 		Route::resource('admin/users', 'AdminUserController');
 
 		///admin product
@@ -77,6 +80,8 @@ Route::group(['middleware' => 'web'], function() {
 		Route::get('carts/manage/{id}/detail/export', 'CartController@export_order_detail');
 
 		//profile_user
+		Route::get('change-password', 'UpdatePasswordController@view_update');
+		Route::post('change-password', 'UpdatePasswordController@update');
 		Route::resource('/user', 'UserProfileController');
 	});
 	//index
