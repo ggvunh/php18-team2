@@ -38,12 +38,12 @@ class UpdatePasswordController extends Controller
                 'password' => Hash::make($request->password)
             ])->save();
 
-            $request->session()->flash('success', 'Your password has been changed.');
+            $request->session()->flash('success', 'Mật khẩu của bạn đã được thay đổi.');
 
             return back();
         }
 
-        $request->session()->flash('failure', 'Your password has not been changed.');
+        $request->session()->flash('failure', 'Mật khẩu của bạn chưa được thay đổi.');
 
         return back();
 

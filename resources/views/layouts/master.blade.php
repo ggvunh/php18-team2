@@ -190,13 +190,6 @@
 					<div class="left-sidebar">
 						<h2>Danh mục Sản Phẩm</h2>
 						<div class="panel-group category-products" id="accordian"><!--category-productsr-->
-							
-							
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a class="{{is_current_route('products/dienthoai/apple')}}" href="{{url('products/dienthoai/apple')}}">Apple</a></h4>
-								</div>
-							</div>
 							<div class="panel panel-default">
 								<div class="panel-heading">
 									<h4 class="panel-title"><a class="{{is_current_route('products/desktop')}}" href="{{url('products/desktop')}}">Desktop</a></h4>
@@ -209,12 +202,7 @@
 							</div>
 							<div class="panel panel-default">
 								<div class="panel-heading">
-									<h4 class="panel-title"><a <a class="{{is_current_route('products/thiet-bi-van-phong')}}" href="{{url('products/thiet-bi-van-phong')}}">TB Văn Phòng</a></h4>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Khuyến Mãi</a></h4>
+									<h4 class="panel-title"><a href="{{url('products/macbook')}}">MacBook</a></h4>
 								</div>
 							</div>
 							
@@ -224,13 +212,14 @@
 							<h2>Thương Hiệu</h2>
 							<div class="brands-name">
 								<ul class="nav nav-pills nav-stacked">
-									<li class="{{is_current_route('apple')}}"><a href="{{url('products/apple')}}"> <span class="pull-right">(50)</span>Apple</a></li>
-									<li><a href="{{url('products/dell')}}"> <span class="pull-right">(56)</span>Dell</a></li>
-									<li><a href="{{url('products/hp')}}"> <span class="pull-right">(32)</span>HP</a></li>
-									<li><a href="#"> <span class="pull-right">(27)</span>Asus</a></li>
-									<li><a href="#"> <span class="pull-right">(5)</span>Lenovo</a></li>
-									<li><a href="#"> <span class="pull-right">(9)</span>Acer</a></li>
-									<li><a href="#"> <span class="pull-right">(4)</span>Sony</a></li>
+									<li class="{{is_current_route('apple')}}"><a href="{{url('products/apple')}}"> <span class="pull-right">({{$apple}})</span>Apple</a></li>
+									<li><a href="{{url('products/dell')}}"> <span class="pull-right">({{$dell}})</span>Dell</a></li>
+									<li><a href="{{url('products/hp')}}"> <span class="pull-right">({{$hp}})</span>HP</a></li>
+									<li><a href="{{url('products/samsung')}}"> <span class="pull-right">({{$samsung}})</span>SamSung</a></li>
+									<li><a href="{{url('products/asus')}}"> <span class="pull-right">({{$asus}})</span>Asus</a></li>
+									<li><a href="{{url('products/lenovo')}}"> <span class="pull-right">({{$lenovo}})</span>Lenovo</a></li>
+									<li><a href="{{url('products/acer')}}"> <span class="pull-right">({{$acer}})</span>Acer</a></li>
+									<li><a href="{{url('products/sony')}}"> <span class="pull-right">({{$sony}})</span>Sony</a></li>
 								</ul>
 							</div>
 						</div><!--/brands_products-->

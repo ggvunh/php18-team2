@@ -93,6 +93,17 @@ Route::group(['middleware' => 'web'], function() {
 	Route::get('products/dienthoai/apple', 'ProductController@listapple');
 	Route::get('products/dienthoai/samsung', 'ProductController@listdtsamsung');
 	Route::get('products/maytinhbang', 'ProductController@listmaytinhbang');
+	Route::get('products/desktop', 'ProductController@list_desktop');
+	Route::get('products/phu-kien', 'ProductController@list_phukien');
+	Route::get('products/macbook', 'ProductController@list_macbook');
+	Route::get('products/apple', 'ProductController@list_apple');
+	Route::get('products/dell', 'ProductController@list_dell');
+	Route::get('products/hp', 'ProductController@list_hp');
+	Route::get('products/samsung', 'ProductController@list_samsung');
+	Route::get('products/asus', 'ProductController@list_asus');
+	Route::get('products/lenovo', 'ProductController@list_lenovo');
+	Route::get('products/acer', 'ProductController@list_acer');
+	Route::get('products/sony', 'ProductController@list_sony');
 
 
 	Auth::routes();
