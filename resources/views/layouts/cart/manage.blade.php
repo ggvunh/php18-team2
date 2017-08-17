@@ -89,7 +89,7 @@
 
                                 	<ul class="dropdown-menu" style="min-width: 110px;">
                                 		<li><a href="{{ url('/user')}}">Xem Profile</li></a>
-                                		<li><a href="#">Đổi mật khẩu</a></li>
+                                		<li><a href="{{ url('/change-password')}}">Đổi mật khẩu</a></li>
                                 		<li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();

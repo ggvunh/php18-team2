@@ -16,11 +16,10 @@ class CreateOrderdetailTable extends Migration
         Schema::create('order_detail', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('quantity');
-            $table->decimal('price', 5, 2);
+            $table->decimal('price', 10, 0);
             $table->integer('order_id')->unsigned()->nullable();
             $table->foreign('order_id')->references('id')->on('orders');
-            $table->integer('product_id')->unsigned()->nullable();
-            $table->foreign('product_id')->references('id')->on('products');
+            $table->integer('product_id');
             $table->timestamps();
         });
     }

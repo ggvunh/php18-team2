@@ -18,7 +18,7 @@ class AdminUserController extends Controller
      */
     public function index()
     {
-        $users = User::where('is_admin', '!=', 1)->get();
+        $users = User::get();
         return view('auth.user.index')->with('users', $users);
     }
 
@@ -42,7 +42,7 @@ class AdminUserController extends Controller
     {
         $input = $request->all();
         $user = User::create($input);
-        return redirect('admin/products');
+        return redirect('admin/users ');
 
     }
 
@@ -106,5 +106,30 @@ class AdminUserController extends Controller
     {
         $orders = Order::where('user_id', '=', $id)->get();
         return view('auth.user.user-orders')->with('orders', $orders);
+    }
+
+    public function delete_user($id)
+    {   
+        $user = User::find($id)->delete();
+        return redirect('admin/users');
+    }
+
+    public function phan_quyen($id)
+    {
+        $user = User::find($id);
+        return view('auth.user.phan-quyen')->with('user', $user);
+    }
+    public function excute_phan_quyen(Request $request, $id)
+    {
+        $user = User::find($id);
+        $pq = $request->Input('quyen');
+        if ($pq == 1)
+        {
+            $user->update(['is_admin' => 1]);
+            return redirect('admin/users');
+        }
+        $user->update(['is_admin' => 0]);
+        return redirect('admin/users');
+        
     }
 }

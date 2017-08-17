@@ -79,17 +79,22 @@
 								<li><a id="cart" href="{{ url('carts')}}" ><i class="fa fa-shopping-cart"></i><span id="count"> Giỏ Hàng</span></a></li>
 								@endif -->
 								@if (Auth::check())
+									@if(Auth::user()->is_admin == 1)
+									<li>
+										<a href="{{url('/admin')}}"><i class="fa fa-unlock-alt" aria-hidden="true"></i> Admin</a>
+									</li>
+									@endif
 								<li>
 									<a href="{{ url('carts/manage')}}"><i class="fa fa-check-square-o" aria-hidden="true"></i> Quản lý đơn hàng</a>
 								</li>
 								<li>
+									<a href="#" ></a>
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-user"></i>
                                     	{{ Auth::user()->name }} <span class="caret"></span>
                                 	</a>
-
                                 	<ul class="dropdown-menu" style="min-width: 110px;">
                                 		<li><a href="{{ url('/user')}}">Xem Profile</li></a>
-                                		<li><a href="#">Đổi mật khẩu</a></li>
+                                		<li><a href="{{ url('/change-password')}}">Đổi mật khẩu</a></li>
                                 		<li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
@@ -109,12 +114,13 @@
 								@endif
 							</ul>
 						</div>
+						
 					</div>
 				</div>
 			</div>
 		</div><!--/header-middle-->
 	
-<div class="header-bottom"><!--header-bottom-->
+		<div class="header-bottom"><!--header-bottom-->
 			<div class="container">
 				<div class="row">
 					<div class="col-sm-6">
@@ -128,14 +134,22 @@
 						</div>
 						<div class="mainmenu pull-left">
 							<ul class="nav navbar-nav collapse navbar-collapse">
-								<li><a href="{{url('products/laptop')}}" class="active">Laptop</a></li>
-								<li class="dropdown"><a href="{{url('products/dienthoai')}}">Điện Thoại<i class="fa fa-angle-down"></i></a>
+								<li class="dropdown">
+									<a class="{{is_current_route('products/laptop/*')}}" href="{{url('products/laptop')}}">Laptop<i class="fa fa-angle-down"></i></a>
+									<ul role="menu" class="sub-menu">
+                                        <li><a href="{{url('products/laptop/dell')}}">Dell</a></li>
+										<li><a href="{{url('products/laptop/hp')}}">HP</a></li>  
+                                    </ul>
+								</li>
+								<li class="dropdown">
+									<a class="{{is_current_route('products/dienthoai/*')}}" href="{{url('products/dienthoai')}}">Điện Thoại<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
-                                        <li><a href="{{url('products/apple')}}">Iphone</a></li>
-										<li><a href="{{url('products/samsung')}}">SAMSUNG</a></li>  
+                                        <li><a class="{{is_current_route('products/dienthoai/apple')}}" href="{{url('products/dienthoai/apple')}}">Iphone</a></li>
+										<li><a class="{{is_current_route('products/dienthoai/samsung')}}" href="{{url('products/dienthoai/samsung')}}">SAMSUNG</a></li>  
                                     </ul>
                                 </li> 
-								<li class="dropdown"><a href="{{url('products/maytinhbang')}}">Máy Tính Bảng<i class="fa fa-angle-down"></i></a>
+								<li class="dropdown">
+									<a class="{{is_current_route('products/maytinhbang')}}" href="{{url('products/maytinhbang')}}">Máy Tính Bảng<i class="fa fa-angle-down"></i></a>
                                 </li> 
 								
 								<li><a href="#">Liên Hệ</a></li>
@@ -153,7 +167,8 @@
 					</div>
 				</div>
 			</div>
-		</div><!--/header-bottom-->	</header><!--/header-->
+		</div><!--/header-bottom-->
+	</header><!--/header-->
 @if ( Cart::count() > 0)
 	<section id="cart_items" style="margin-bottom: 50px">
 		<div class="container">

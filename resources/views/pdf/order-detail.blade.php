@@ -22,15 +22,20 @@
      <tr>
           <td>{{ $item ->id}}</td>
           <td>{{ $item ->quantity}}</td>
-          <td>{{ number_format($item ->price, '2', ',', '.') . ' VNĐ'}}</td>
-          <td>{{ number_format($item ->quantity * $item ->price, '2', ',', '.') . ' VNĐ'}}</td>
+          <td>{{ number_format($item ->price, '2', ',', '.') . ' VND'}}</td>
+          <td>{{ number_format($item ->quantity * $item ->price, '2', ',', '.') . ' VND'}}</td>
           <td>{{ $item ->order_id}}</td>
-          <td>{{ App\Product::find($item ->product_id)->name }}</td>
+          <?php $product = App\Product::find($item->product_id); ?>
+          @if (empty($product))
+          <td> Product deleted or stopped business</td>
+          @else
+          <td>{{ $product->name}}</td>
+          @endif
     </tr>
     <?php $total+=$item->quantity * $item->price ?>
     @endforeach
 	</tbody>
 	</table>
-	<p style="float: right;"><b>Total: {{ number_format($total, '2', ',', '.') . ' VNĐ' }}</b></p> 
+	<p style="float: right;"><b>Total: {{ number_format($total, '2', ',', '.') . ' VND' }}</b></p> 
 </body>
 </html>
