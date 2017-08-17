@@ -106,57 +106,49 @@ class ProductController extends Controller
     }
 
     public function listlaptop()
-    {
-        $products = Product::where('category_id', '=', 2)->paginate(6);;
-        $categories = Category::all();
-        $brands = Brand::all();
-        return view('layouts.index')->with(['products' => $products, 'catgories' => $categories, 'brands' => $brands]);
+    {   $category_laptop = Category::where('name', 'like', '%Laptop%')->first();
+        $products = Product::where('category_id', '=', $category_laptop->id)->paginate(6);
+        return view('layouts.index')->with(['products' => $products]);
     }
     public function listlaptopdell()
-    { 
-        $products = Product::where('category_id', '=', 2)->paginate(6);
-        $products = Product::where('brand_id', '=', 12)->paginate(6);
-        $categories = Category::all();
-        $brands = Brand::all();
-        return view('layouts.index')->with(['products' => $products, 'catgories' => $categories, 'brands' => $brands]);
+    {   
+        $category_laptop =  Category::where('name', 'like', '%Laptop%')->first();
+        $brand_dell = Brand::where('name', 'like', '%Dell%')->first();
+        $products = Product::where('category_id', '=', $category_laptop->id)->where('brand_id', '=', $brand_dell->id)->paginate(6);
+        return view('layouts.index')->with(['products' => $products]);
     }
     public function listlaptophp()
     { 
-        $products = Product::where('category_id', '=', 2)->paginate(6);
-        $products = Product::where('brand_id', '=', 13)->paginate(6);
-        $categories = Category::all();
-        $brands = Brand::all();
-        return view('layouts.index')->with(['products' => $products, 'catgories' => $categories, 'brands' => $brands]);
+        $category_laptop =  Category::where('name', 'like', '%Laptop%')->first();
+        $brand_hp = Brand::where('name', 'like', '%HP%')->first();
+        $products = Product::where('category_id', '=', $category_laptop->id)->where('brand_id', '=', $brand_hp->id)->paginate(6);
+        return view('layouts.index')->with(['products' => $products]);
     }
     public function listdienthoai()
     {
-        $products = Product::where('category_id', '=', 1)->paginate(6);
-        $categories = Category::all();
-        $brands = Brand::all();
-        return view('layouts.index')->with(['products' => $products, 'catgories' => $categories, 'brands' => $brands]);
+        $category_dienthoai =  Category::where('name', 'like', '%Điện Thoại%')->first();
+        $products = Product::where('category_id', '=', $category_dienthoai->id)->paginate(6);
+        return view('layouts.index')->with(['products' => $products]);
     }
     public function listapple()
     {
-        $products = Product::where('category_id', '=', 1)->paginate(6);
-        $products = Product::where('brand_id', '=', 1)->paginate(6);
-        $categories = Category::all();
-        $brands = Brand::all();
-        return view('layouts.index')->with(['products' => $products, 'catgories' => $categories, 'brands' => $brands]);
+        $category_dienthoai =  Category::where('name', 'like', '%Điện Thoại%')->first();
+        $brand_ip = Brand::where('name', 'like', '%Apple%')->first();
+        $products = Product::where('category_id', '=', $category_dienthoai->id)->where('brand_id', '=', $brand_ip->id)->paginate(6);
+        return view('layouts.index')->with(['products' => $products]);
     }
     public function listdtsamsung()
     {
-        $products = Product::where('category_id', '=', 1)->paginate(6);
-        $products = Product::where('brand_id', '=', 2)->paginate(6);
-        $categories = Category::all();
-        $brands = Brand::all();
-        return view('layouts.index')->with(['products' => $products, 'catgories' => $categories, 'brands' => $brands]);
+        $category_dienthoai =  Category::where('name', 'like', '%Điện Thoại%')->first();
+        $brand_ss = Brand::where('name', 'like', '%SamSung%')->first();
+        $products = Product::where('category_id', '=', $category_dienthoai->id)->where('brand_id', '=', $brand_ss->id)->paginate(6);
+        return view('layouts.index')->with(['products' => $products]);
     }
      public function listmaytinhbang()
     {
-        $products = Product::where('category_id', '=', 3)->paginate(6);
-        $categories = Category::all();
-        $brands = Brand::all();
-        return view('layouts.index')->with(['products' => $products, 'catgories' => $categories, 'brands' => $brands]);
+        $category_maytinhban =  Category::where('name', 'like', '%Máy Tính Bảng%')->first();
+        $products = Product::where('category_id', '=', $category_maytinhban->id)->paginate(6);
+        return view('layouts.index')->with(['products' => $products]);
     }
 
     public function comment(Request $request,$product)
@@ -177,4 +169,82 @@ class ProductController extends Controller
         $brands = Brand::all();
         return view('layouts.index')->with(['products' => $products, 'catgories' => $categories, 'brands' => $brands]);
     }
+
+    public function list_desktop()
+    {
+        $category_desktop =  Category::where('name', 'like', '%Desktop%')->first();
+        $products = Product::where('category_id', '=', $category_desktop->id)->paginate(6);
+        return view('layouts.index')->with(['products' => $products]);
+    }
+
+    public function list_phukien()
+    {
+        $category_phukien =  Category::where('name', 'like', '%Phụ Kiện%')->first();
+        $products = Product::where('category_id', '=', $category_phukien->id)->paginate(6);
+        return view('layouts.index')->with(['products' => $products]);
+    }
+
+    public function list_macbook()
+    {
+        $category_macbook =  Category::where('name', 'like', '%Macbook%')->first();
+        $products = Product::where('category_id', '=', $category_macbook->id)->paginate(6);
+        return view('layouts.index')->with(['products' => $products]);
+    } 
+
+    public function list_apple()
+    {
+        $brand_apple =  Brand::where('name', 'like', '%Apple%')->first();
+        $products = Product::where('brand_id', '=', $brand_apple->id)->paginate(6);
+        return view('layouts.index')->with(['products' => $products]);
+    }
+
+    public function list_dell()
+    {
+        $brand_dell =  Brand::where('name', 'like', '%Dell%')->first();
+        $products = Product::where('brand_id', '=', $brand_dell->id)->paginate(6);
+        return view('layouts.index')->with(['products' => $products]);
+    }
+
+    public function list_hp()
+    {
+        $brand_hp =  Brand::where('name', 'like', '%HP%')->first();
+        $products = Product::where('brand_id', '=', $brand_hp->id)->paginate(6);
+        return view('layouts.index')->with(['products' => $products]);
+    }
+
+    public function list_samsung()
+    {
+        $brand_ss =  Brand::where('name', 'like', '%SamSung%')->first();
+        $products = Product::where('brand_id', '=', $brand_ss->id)->paginate(6);
+        return view('layouts.index')->with(['products' => $products]);
+    }
+
+    public function list_asus()
+    {
+        $brand_asus =  Brand::where('name', 'like', '%Asus%')->first();
+        $products = Product::where('brand_id', '=', $brand_asus->id)->paginate(6);
+        return view('layouts.index')->with(['products' => $products]);
+    }
+
+    public function list_lenovo()
+    {
+        $brand_lenovo =  Brand::where('name', 'like', '%Lenovo%')->first();
+        $products = Product::where('brand_id', '=', $brand_lenovo->id)->paginate(6);
+        return view('layouts.index')->with(['products' => $products]);
+    }
+
+    public function list_acer()
+    {
+        $brand_acer =  Brand::where('name', 'like', '%Acer%')->first();
+        $products = Product::where('brand_id', '=', $brand_acer->id)->paginate(6);
+        return view('layouts.index')->with(['products' => $products]);
+    }
+
+    public function list_sony()
+    {
+        $brand_sony =  Brand::where('name', 'like', '%Sony%')->first();
+        $products = Product::where('brand_id', '=', $brand_sony->id)->paginate(6);
+        return view('layouts.index')->with(['products' => $products]);
+    }
+
 }
