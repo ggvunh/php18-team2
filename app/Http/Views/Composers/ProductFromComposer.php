@@ -30,13 +30,47 @@ Class ProductFromComposer {
     $brand_lenovo =  Brand::where('name', 'like', '%Lenovo%')->first();
     $brand_acer =  Brand::where('name', 'like', '%Acer%')->first();
     $brand_sony =  Brand::where('name', 'like', '%Sony%')->first();
-    $apple = Product::where('brand_id', '=', $brand_apple->id)->count();
-    $asus = Product::where('brand_id', '=', $brand_asus->id)->count();
-    $dell = Product::where('brand_id', '=', $brand_dell->id)->count();
-    $hp = Product::where('brand_id', '=', $brand_hp->id)->count();
-    $lenovo = Product::where('brand_id', '=', $brand_lenovo->id)->count();
-    $acer = Product::where('brand_id', '=', $brand_acer->id)->count();
-    $sony = Product::where('brand_id', '=', $brand_sony->id)->count();
+
+    if(!empty($brand_apple))
+      $apple = Product::where('brand_id', '=', $brand_apple->id)->count();
+    else
+      $apple = 0;
+
+    if (!empty($brand_asus)) 
+      $asus = Product::where('brand_id', '=', $brand_asus->id)->count();
+    else
+      $asus = 0;
+
+    if (!empty($brand_dell)) {
+      $dell = Product::where('brand_id', '=', $brand_dell->id)->count();
+    }
+    else
+      $dell = 0;
+    
+    if (!empty($brand_hp))
+      $hp = Product::where('brand_id', '=', $brand_hp->id)->count();
+    else
+      $hp = 0;
+
+    if (!empty($brand_lenovo))
+      $lenovo = Product::where('brand_id', '=', $brand_lenovo->id)->count();
+    else
+      $lenovo = 0;
+
+    if (!empty($brand_acer))
+      $acer = Product::where('brand_id', '=', $brand_acer->id)->count();
+    else
+      $acer = 0;
+    
+    if (!empty($brand_sony))
+      $sony = Product::where('brand_id', '=', $brand_sony->id)->count();
+    else
+      $sony = 0;
+
+    if (!empty($brand_ss))
+      $samsung = Product::where('brand_id', '=', $brand_ss->id)->count();
+    else
+      $samsung = 0;
     $samsung = Product::where('brand_id', '=', $brand_ss->id)->count();
     $view->with(['categories' => $this->categories->pluck('name', 'id'), 'brands' => $this->brands->pluck('name', 'id'), 'apple' => $apple, 'dell' => $dell, 'asus' => $asus, 'hp' => $hp, 'lenovo' => $lenovo, 'acer' => $acer, 'sony' => $sony, 'samsung' => $samsung ]);
     // dd($this->breeds->pluck('name', 'id'));
