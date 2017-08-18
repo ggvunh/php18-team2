@@ -16,9 +16,9 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
             $table->dateTime('date');
-            $table->string('status');
+            $table->string('status')->default('avalible');
             $table->string('address_order');
-            $table->string('shipping_status');
+            $table->string('shipping_status')->default('waiting');
             $table->string('phone');
             $table->string('name_receiver');
             $table->integer('user_id')->unsigned()->nullable();

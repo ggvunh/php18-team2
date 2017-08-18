@@ -57,7 +57,7 @@ class AdminProductController extends Controller
         
         
         $product = Product::create(['name' => $request->Input('name'), 'price' => $request->Input('price'), 'images' => $file_name, 'active' => $request->Input('active'), 'category_id' => $request->Input('category_id'), 'brand_id' => $request->Input('brand_id'), 'quantity' => $request->Input('quantity'), 'detail' => $request->Input('detail')  ]);
-        return redirect('admin');
+        return redirect('admin/products');
         }
 
     /**
@@ -101,7 +101,7 @@ class AdminProductController extends Controller
 
         $product->update(['name' => $request->Input('name'), 'price' => $request->Input('price'), 'active' => $request->Input('active'), 'category_id' => $request->Input('category_id'), 'brand_id' => $request->Input('brand_id'), 'quantity' => $request->Input('quantity'), 'detail' => $request->Input('detail')  ]);
 
-        return redirect('admin');
+        return redirect('admin/products');
     }
 
     /**

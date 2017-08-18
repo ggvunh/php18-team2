@@ -42,7 +42,7 @@
 			<li><a href="#details" data-toggle="tab">Thông Số Kỹ Thuật</a></li>
 			<!-- <li><a href="#companyprofile" data-toggle="tab">Sản Phẩm Tương Tự</a></li> -->
 			<!-- <li><a href="#tag" data-toggle="tab">Tag</a></li> -->
-			<li class="active"><a href="#reviews" data-toggle="tab">Bình Luận (5)</a></li>
+			<li class="active"><a href="#reviews" data-toggle="tab">Bình Luận ({{$comments->count()}})</a></li>
 		</ul>
 	</div>
 	<div class="tab-content">
