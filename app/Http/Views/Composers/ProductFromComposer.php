@@ -71,7 +71,6 @@ Class ProductFromComposer {
       $samsung = Product::where('brand_id', '=', $brand_ss->id)->count();
     else
       $samsung = 0;
-    $samsung = Product::where('brand_id', '=', $brand_ss->id)->count();
     $view->with(['categories' => $this->categories->pluck('name', 'id'), 'brands' => $this->brands->pluck('name', 'id'), 'apple' => $apple, 'dell' => $dell, 'asus' => $asus, 'hp' => $hp, 'lenovo' => $lenovo, 'acer' => $acer, 'sony' => $sony, 'samsung' => $samsung ]);
     // dd($this->breeds->pluck('name', 'id'));
   }
